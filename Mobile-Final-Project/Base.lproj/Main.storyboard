@@ -1,24 +1,161 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bbn-Xg-TT5">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--ContactForm-->
+        <scene sceneID="9Ie-0t-IcZ">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController title="ContactForm" id="4M0-zs-1Nr" customClass="ContactFormViewController" customModule="Mobile_Final_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7ds-SA-pKZ">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="7LU-Mz-xrI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Add New" image="plus" catalog="system" landscapeImage="plus" largeContentSizeImage="plus" id="zFg-91-vsG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qvp-ck-gON" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-937" y="-297"/>
+        </scene>
+        <!--SplashPage-->
+        <scene sceneID="Y7o-xG-IaJ">
+            <objects>
+                <viewController title="SplashPage" id="8VD-q7-0NM" customClass="SplashViewController" customModule="Mobile_Final_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ecp-33-3L8">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nscc-logo" translatesAutoresizingMaskIntoConstraints="NO" id="kht-Cw-ZMM">
+                                <rect key="frame" x="45" y="359" width="300" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="K1a-5u-Grq"/>
+                                    <constraint firstAttribute="height" constant="90" id="OF4-Cm-4cg"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contacts App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yS9-FX-c5Z">
+                                <rect key="frame" x="106" y="465" width="178" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bAj-hz-EtM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kht-Cw-ZMM" firstAttribute="centerY" secondItem="bAj-hz-EtM" secondAttribute="centerY" id="C1b-fR-WUC"/>
+                            <constraint firstItem="yS9-FX-c5Z" firstAttribute="top" secondItem="kht-Cw-ZMM" secondAttribute="bottom" constant="16" id="K94-kG-kzX"/>
+                            <constraint firstItem="kht-Cw-ZMM" firstAttribute="centerX" secondItem="bAj-hz-EtM" secondAttribute="centerX" id="b3q-Le-fi7"/>
+                            <constraint firstItem="yS9-FX-c5Z" firstAttribute="centerX" secondItem="bAj-hz-EtM" secondAttribute="centerX" id="fNk-GD-kx9"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Splash" image="house" catalog="system" landscapeImage="house" largeContentSizeImage="house" id="va3-Lu-Rir"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="71r-pI-GEo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1658.4615384615383" y="-742.1800947867298"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="KOV-LW-zef">
+            <objects>
+                <tabBarController id="Bbn-Xg-TT5" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ftl-qC-88C">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="8VD-q7-0NM" kind="relationship" relationship="viewControllers" id="XOo-Rf-Gfp"/>
+                        <segue destination="4M0-zs-1Nr" kind="relationship" relationship="viewControllers" id="CFw-l4-bWF"/>
+                        <segue destination="rse-JV-Srw" kind="relationship" relationship="viewControllers" id="edS-35-NbS"/>
+                        <segue destination="Y9H-g6-CrM" kind="relationship" relationship="viewControllers" id="VrR-bt-GXj"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WZZ-RW-K1j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1705" y="16"/>
+        </scene>
+        <!--ContactList-->
+        <scene sceneID="CBl-9e-IFL">
+            <objects>
+                <viewController title="ContactList" id="rse-JV-Srw" customClass="ContactListViewController" customModule="Mobile_Final_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lfy-CI-fwo">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="nay-QB-gIs"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Contacts" image="list.dash" catalog="system" landscapeImage="list.dash" largeContentSizeImage="list.dash" id="h1s-GI-yT0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1YQ-j8-pgI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-648" y="341"/>
+        </scene>
+        <!--ClientDetail-->
+        <scene sceneID="wv5-GQ-DMU">
+            <objects>
+                <viewController title="ClientDetail" id="jMK-p4-hXg" customClass="ClientDetailViewController" customModule="Mobile_Final_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qes-07-09Y">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="2S2-Ca-fnd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DOZ-Ib-5pk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="389" y="352"/>
+        </scene>
+        <!--EditClient-->
+        <scene sceneID="giF-8s-TVw">
+            <objects>
+                <viewController title="EditClient" id="qJV-wg-7yJ" customClass="EditClientViewController" customModule="Mobile_Final_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6SS-KS-1AT">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="lQ2-He-DsX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yTp-xR-ZZN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1202" y="346"/>
+        </scene>
+        <!--CreditsPage-->
+        <scene sceneID="r4m-Mo-8DM">
+            <objects>
+                <viewController title="CreditsPage" id="Y9H-g6-CrM" customClass="CreditsViewController" customModule="Mobile_Final_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="O3c-ko-awd">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ftA-7V-l3f"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Credits" image="info.square" catalog="system" landscapeImage="info.square" largeContentSizeImage="info.square" id="j6s-jm-tLy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4LO-19-tlo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1298" y="749"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="house" catalog="system" width="128" height="104"/>
+        <image name="info.square" catalog="system" width="128" height="114"/>
+        <image name="list.dash" catalog="system" width="128" height="85"/>
+        <image name="nscc-logo" width="2560" height="575"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.27843137254901962" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
