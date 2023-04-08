@@ -5,8 +5,8 @@
 //  Created by Jordan Keough on 4/7/23.
 //
 
-import SQLite3
 import UIKit
+import Contact
 
 class ClientDetailViewController: UIViewController {
     
@@ -17,14 +17,22 @@ class ClientDetailViewController: UIViewController {
     @IBOutlet weak var lblPhone: UILabel!
     @IBOutlet weak var txtNote: UITextView!
     
-    var selectedContact : String!
+    var selectedContact : Contact!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
+    
+        populateDetails()
     }
     
+    func populateDetails() {
+        lblFirstName.text = selectedContact.firstName
+        lblLastName.text = selectedContact.lastName
+        lblEmail.text = selectedContact.email
+        lblAddress.text = selectedContact.address
+        lblPhone.text = selectedContact.phone
+        txtNote.text = selectedContact.note
+    }
     
     @IBAction func btnSaveNote(_ sender: UIButton) {
         

@@ -6,16 +6,16 @@
 //
 
 import UIKit
-import SQLite3
+import Contact
 
 class ContactListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var listTableView: UITableView!
     
-    var contacts: [String] = []
+    var contacts: [Contact] = []
     var selectedCellIdx: Int = 0
     
-    var db: OpaquePointer?
+   let dbHelper = DBHelper.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,24 +23,25 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
         listTableView.dataSource = self
         listTableView.delegate = self
         
-        retrieveData()
+        populateList()
     }
     
-    func retrieveData() {
-        let selectQuery = "SELECT lastName, firstName FROM myContacts ORDER BY lastName;"
-        
-        var statement: OpaquePointer?
-        if sqlite3_prepare_v2(db, selectQuery, -1, &statement, nil) == SQLITE_OK {
-            while sqlite3_step(statement) == SQLITE_ROW {
-                let lastName = String(cString: sqlite3_column_text(statement, 0))
-                let firstName = String(cString: sqlite3_column_text(statement, 1))
-                let contact = "\(lastName), \(firstName)"
-                contacts.append(contact)
-            }
+    func populateList() {
+        contacts = dbHelper.fetchAllContacts()
+
+        for contact in fetchedContacts {
+            if let firstName = contact["firstName"] as? String,
+                let lastName = contact["lastName"] as? String,
+                let phoneNumber = contact["phoneNumber"] as? String,
+                let email = contact["email"] as? String,
+                let contactID = contact["contactID"] as? Int {
+                let contact = Contact(firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, email: email)
+                    contacts.append(contact)
+                }
         }
-        sqlite3_finalize(statement)
         listTableView.reloadData()
     }
+    
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contacts.count
@@ -49,8 +50,8 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = listTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let contactName = cell.viewWithTag(1) as! UILabel
-        contactName.text = contacts[indexPath.row]
-        
+        //contactName.text = contacts[indexPath.row]
+        contactName.text = "\(contacts[indexpath.row].lastName), \(contacts[indexpath.row].lastName)"
         return cell
     }
     
