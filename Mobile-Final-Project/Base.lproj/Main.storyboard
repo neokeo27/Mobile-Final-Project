@@ -113,7 +113,7 @@
                                     <color key="titleColor" systemColor="systemBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="saveButtonPressed:" destination="4M0-zs-1Nr" eventType="touchUpInside" id="Cix-Nt-6z9"/>
+                                    <action selector="btnSaveContact:" destination="4M0-zs-1Nr" eventType="touchUpInside" id="RXu-7V-Isr"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -122,7 +122,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Add New" image="plus" catalog="system" landscapeImage="plus" largeContentSizeImage="plus" id="zFg-91-vsG"/>
                     <connections>
-                        <outlet property="saveButton" destination="bxN-Fb-h4k" id="bxP-m0-GbK"/>
                         <outlet property="txtAddress" destination="bFb-qQ-gl9" id="fIA-ly-dhX"/>
                         <outlet property="txtEmail" destination="kRW-OP-tWh" id="KvG-6s-eiJ"/>
                         <outlet property="txtFirstName" destination="DhR-Ld-gh0" id="6bB-oI-m0S"/>
@@ -207,7 +206,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="CUe-AM-cYG">
+                                    <tableViewCell clipsSubviews="YES" tag="1" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="CUe-AM-cYG">
                                         <rect key="frame" x="0.0" y="50" width="361" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CUe-AM-cYG" id="dv8-yi-LVq">
@@ -227,9 +226,6 @@
                                                 <constraint firstItem="9Y2-m5-mZP" firstAttribute="trailing" secondItem="dv8-yi-LVq" secondAttribute="trailingMargin" id="j3j-q2-aSL"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="jMK-p4-hXg" kind="show" id="Ul1-x8-neb"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -245,6 +241,10 @@
                         <color key="backgroundColor" name="AccentColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Contacts" image="list.dash" catalog="system" landscapeImage="list.dash" largeContentSizeImage="list.dash" id="h1s-GI-yT0"/>
+                    <connections>
+                        <outlet property="listTableView" destination="Apc-bh-1SL" id="6vr-SK-H69"/>
+                        <segue destination="jMK-p4-hXg" kind="show" identifier="segueShowContact" id="t7i-H5-DBN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1YQ-j8-pgI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -272,6 +272,9 @@
                                 <state key="normal" title="Save Note">
                                     <color key="titleColor" systemColor="systemBackgroundColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnSaveNote:" destination="jMK-p4-hXg" eventType="touchUpInside" id="TaL-LG-VeY"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wf7-gr-VW7">
                                 <rect key="frame" x="55" y="126" width="92" height="21"/>
@@ -366,6 +369,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="btnEdit:" destination="jMK-p4-hXg" eventType="touchUpInside" id="flC-v9-bX1"/>
                                     <segue destination="qJV-wg-7yJ" kind="show" id="xyF-2N-Qep"/>
                                 </connections>
                             </button>
@@ -376,6 +380,9 @@
                                 <state key="normal" title="Delete">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnDelete:" destination="jMK-p4-hXg" eventType="touchUpInside" id="u4B-LY-9ip"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j58-uv-qb3">
                                 <rect key="frame" x="302" y="37" width="75" height="35"/>
@@ -384,12 +391,23 @@
                                 <state key="normal" title="Close">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnClose:" destination="jMK-p4-hXg" eventType="touchUpInside" id="5o0-n4-AWa"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2S2-Ca-fnd"/>
                         <color key="backgroundColor" name="AccentColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="vLA-cq-Hu6"/>
+                    <connections>
+                        <outlet property="lblAddress" destination="M9V-Dd-ZbI" id="2gr-mQ-9bc"/>
+                        <outlet property="lblEmail" destination="W7d-BN-PPL" id="CsI-yV-r3n"/>
+                        <outlet property="lblFirstName" destination="uGO-A6-el1" id="DYt-vd-v9e"/>
+                        <outlet property="lblLastName" destination="K1t-R0-PyE" id="try-gW-vBb"/>
+                        <outlet property="lblPhone" destination="GqJ-t8-PDc" id="RH5-fG-aGM"/>
+                        <outlet property="txtNote" destination="Hcr-uQ-Iig" id="89c-wY-Lrd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DOZ-Ib-5pk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -418,6 +436,7 @@
                                     <color key="titleColor" systemColor="systemBackgroundColor"/>
                                 </state>
                                 <connections>
+                                    <action selector="btnSaveContact:" destination="qJV-wg-7yJ" eventType="touchUpInside" id="rfC-h1-vXS"/>
                                     <segue destination="jMK-p4-hXg" kind="show" id="BgZ-ng-sB7"/>
                                 </connections>
                             </button>
@@ -506,6 +525,14 @@
                         <color key="backgroundColor" name="AccentColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="yEq-rk-Z1N"/>
+                    <connections>
+                        <outlet property="editAddress" destination="4oR-8D-NDU" id="0hN-hQ-fsB"/>
+                        <outlet property="editEmail" destination="XP6-HK-lfP" id="W90-5N-eZK"/>
+                        <outlet property="editFirstName" destination="lnl-1n-5CX" id="qRr-yu-aI7"/>
+                        <outlet property="editLastName" destination="VfR-pF-h5X" id="Jrd-UG-vj4"/>
+                        <outlet property="editPhone" destination="b5d-jv-Qmi" id="C0Q-4a-N2f"/>
+                        <outlet property="textNote" destination="vYh-xL-Kpv" id="A8o-QR-SnA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yTp-xR-ZZN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -560,6 +587,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="xyF-2N-Qep"/>
         <segue reference="BgZ-ng-sB7"/>
     </inferredMetricsTieBreakers>
     <resources>

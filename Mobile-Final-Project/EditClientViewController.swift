@@ -2,28 +2,31 @@
 //  EditClientViewController.swift
 //  Mobile-Final-Project
 //
-//  Created by user239393 on 4/7/23.
+//  Created by Jordan Keough on 4/7/23.
 //
 
 import UIKit
+import SQLite3
 
 class EditClientViewController: UIViewController {
 
+    
+    @IBOutlet weak var editFirstName: UITextField!
+    @IBOutlet weak var editLastName: UITextField!
+    @IBOutlet weak var editEmail: UITextField!
+    @IBOutlet weak var editAddress: UITextField!
+    @IBOutlet weak var editPhone: UITextField!
+    @IBOutlet weak var textNote: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func btnSaveContact(_ sender: UIButton) {
     }
-    */
+    
+    
 
 }
