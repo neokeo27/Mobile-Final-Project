@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SQLite3
 
 class EditClientViewController: UIViewController {
 
@@ -21,7 +20,6 @@ class EditClientViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
     }
     
     @IBAction func btnSaveContact(_ sender: UIButton) {

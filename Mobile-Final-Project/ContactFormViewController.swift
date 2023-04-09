@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Contact
 
 class ContactFormViewController: UIViewController {
     
@@ -47,7 +46,7 @@ class ContactFormViewController: UIViewController {
         address = txtAddress.text
         phone = txtPhone.text
         note = txtNote.text
-        let newContact = Contact(firstName, lastName, email, address, phone, note)
-        dbHelper.insertContact(newContact)
+        let newContact = Contact(firstName: firstName, lastName: lastName, email: email, address: address, phone: phone, note: note)
+        dbHelper.insertContact(contact: newContact)
     }
 }

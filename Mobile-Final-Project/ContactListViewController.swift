@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Contact
 
 class ContactListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -15,7 +14,7 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
     var contacts: [Contact] = []
     var selectedCellIdx: Int = 0
     
-   let dbHelper = DBHelper.shared
+    let dbHelper = DBHelper.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,15 +28,16 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
     func populateList() {
         contacts = dbHelper.fetchAllContacts()
 
-        for contact in fetchedContacts {
-            if let firstName = contact["firstName"] as? String,
-                let lastName = contact["lastName"] as? String,
-                let phoneNumber = contact["phoneNumber"] as? String,
-                let email = contact["email"] as? String,
-                let contactID = contact["contactID"] as? Int {
-                let contact = Contact(firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, email: email)
-                    contacts.append(contact)
-                }
+        for contact in contacts {
+            let firstName = contact.firstName
+            let lastName = contact.firstName
+            let email = contact.email
+            let address = contact.address
+            let phone = contact.phone
+            let note = contact.note
+            
+            let contact = Contact(firstName: firstName, lastName: lastName, email: email, address: address, phone: phone, note: note)
+            contacts.append(contact)
         }
         listTableView.reloadData()
     }
@@ -51,7 +51,7 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
         let cell = listTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let contactName = cell.viewWithTag(1) as! UILabel
         //contactName.text = contacts[indexPath.row]
-        contactName.text = "\(contacts[indexpath.row].lastName), \(contacts[indexpath.row].lastName)"
+        contactName.text = "\(contacts[indexPath.row].lastName ?? ""), \(contacts[indexPath.row].lastName ?? "")"
         return cell
     }
     

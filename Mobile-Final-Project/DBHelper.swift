@@ -4,7 +4,7 @@
 //
 //  Created by Jordan Keough on 4/8/23.
 //
-
+import Foundation
 import SQLite3
 
 class DBHelper {
@@ -50,39 +50,38 @@ class DBHelper {
         }
         sqlite3_finalize(statement)
     }
-
-    func insertContact(firstName: String, lastName: String, email: String, address: String, phone: String, note: String) {
+    
+    func insertContact(contact: Contact) {
         let insertQuery = "INSERT INTO myContacts (firstName, lastName, email, address, phone, note) VALUES (?, ?, ?, ?, ?, ?);"
         var statement: OpaquePointer?
         if sqlite3_prepare_v2(db, insertQuery, -1, &statement, nil) == SQLITE_OK {
-            sqlite3_bind_text(statement, 1, firstName ?? "", -1, nil)
-            sqlite3_bind_text(statement, 2, lastName ?? "", -1, nil)
-            sqlite3_bind_text(statement, 3, email ?? "", -1, nil)
-            sqlite3_bind_text(statement, 4, address ?? "", -1, nil)
-            sqlite3_bind_text(statement, 5, phone ?? "", -1, nil)
-            sqlite3_bind_text(statement, 6, note ?? "", -1, nil)
+            sqlite3_bind_text(statement, 1, contact.firstName, -1, nil)
+            sqlite3_bind_text(statement, 2, contact.lastName, -1, nil)
+            sqlite3_bind_text(statement, 3, contact.email, -1, nil)
+            sqlite3_bind_text(statement, 4, contact.address, -1, nil)
+            sqlite3_bind_text(statement, 5, contact.phone, -1, nil)
+            sqlite3_bind_text(statement, 6, contact.note, -1, nil)
             if sqlite3_step(statement) != SQLITE_DONE {
                 print("Error inserting into table")
             } else {
-                print("contact inserted")
+                print("Contact inserted")
             }
         }
         sqlite3_finalize(statement)
     }
 
-    func fetchAllContacts() -> [[String: Any]] {
+    func fetchAllContacts() -> [Contact] {
         let selectQuery = "SELECT * FROM myContacts ORDER BY lastName ASC;"
         return fetchRows(tableName: "myContacts", condition: selectQuery)
     }
 
-    private func fetchRows(tableName: String, condition: String) -> [[String: Any]] {
-        var rows: [[String: Any]] = []
+    private func fetchRows(tableName: String, condition: String) -> [Contact] {
+        var contacts: [Contact] = []
         let selectQuery = "SELECT * FROM \(tableName) \(condition);"
         var statement: OpaquePointer?
         if sqlite3_prepare_v2(db, selectQuery, -1, &statement, nil) == SQLITE_OK {
             while sqlite3_step(statement) == SQLITE_ROW {
-                var row: [String: Any] = [:]
-                let id = Int(sqlite3_column_int(statement, 0))
+                //let id = Int(sqlite3_column_int(statement, 0))
                 let firstName = String(cString: sqlite3_column_text(statement, 1))
                 let lastName = String(cString: sqlite3_column_text(statement, 2))
                 let email = String(cString: sqlite3_column_text(statement, 3))
@@ -90,31 +89,24 @@ class DBHelper {
                 let phone = String(cString: sqlite3_column_text(statement, 5))
                 let note = String(cString: sqlite3_column_text(statement, 6))
 
-                row["id"] = id
-                row["firstName"] = firstName
-                row["lastName"] = lastName
-                row["email"] = email
-                row["address"] = address
-                row["phone"] = phone
-                row["note"] = note
-
-                rows.append(row)
+                let contact = Contact(firstName: firstName, lastName: lastName, email: email, address: address, phone: phone, note: note)
+                contacts.append(contact)
             }
             sqlite3_finalize(statement)
         }
-        return rows
+        return contacts
     }
 
-    func updateContact(contactID: Int, firstName: String, lastName: String, email: String, address: String, phone: String, note: String) {
+    func updateContact(contactID: Int, contact: Contact) {
         let updateQuery = "UPDATE Contacts SET firstName = ?, lastName = ?, email = ?, address = ?, phone = ?, note = ? WHERE id = ?;"
         var statement: OpaquePointer?
         if sqlite3_prepare_v2(db, updateQuery, -1, &statement, nil) == SQLITE_OK {
-            sqlite3_bind_text(statement, 1, firstName, -1, nil)
-            sqlite3_bind_text(statement, 2, lastName, -1, nil)
-            sqlite3_bind_text(statement, 3, email, -1, nil)
-            sqlite3_bind_text(statement, 4, address, -1, nil)
-            sqlite3_bind_text(statement, 5, phone, -1, nil)
-            sqlite3_bind_text(statement, 6, note, -1, nil)
+            sqlite3_bind_text(statement, 1, contact.firstName, -1, nil)
+            sqlite3_bind_text(statement, 2, contact.lastName, -1, nil)
+            sqlite3_bind_text(statement, 3, contact.email, -1, nil)
+            sqlite3_bind_text(statement, 4, contact.address, -1, nil)
+            sqlite3_bind_text(statement, 5, contact.phone, -1, nil)
+            sqlite3_bind_text(statement, 6, contact.note, -1, nil)
             sqlite3_bind_int(statement, 7, Int32(contactID))
             if sqlite3_step(statement) != SQLITE_DONE {
                 print("Error updating contact")

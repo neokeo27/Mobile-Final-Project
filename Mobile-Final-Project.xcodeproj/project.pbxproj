@@ -13,13 +13,14 @@
 		E77BBB7629E092D6005B6339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E77BBB7429E092D6005B6339 /* Main.storyboard */; };
 		E77BBB7829E092DA005B6339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E77BBB7729E092DA005B6339 /* Assets.xcassets */; };
 		E77BBB7B29E092DA005B6339 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E77BBB7929E092DA005B6339 /* LaunchScreen.storyboard */; };
-		E7A493BC29E21CEF008878E0 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A493BB29E21CEF008878E0 /* DBHelper.swift */; };
 		E7BC41F929E0A76200F841D6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC41F829E0A76200F841D6 /* SplashViewController.swift */; };
 		E7BC41FB29E0A77800F841D6 /* ContactFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC41FA29E0A77800F841D6 /* ContactFormViewController.swift */; };
 		E7BC41FD29E0A78900F841D6 /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC41FC29E0A78900F841D6 /* ContactListViewController.swift */; };
 		E7BC41FF29E0A79600F841D6 /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC41FE29E0A79600F841D6 /* CreditsViewController.swift */; };
 		E7BC420129E0A7B100F841D6 /* ClientDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC420029E0A7B100F841D6 /* ClientDetailViewController.swift */; };
 		E7BC420329E0A7E400F841D6 /* EditClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC420229E0A7E400F841D6 /* EditClientViewController.swift */; };
+		E7F037C829E22BBD00012414 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F037C629E22BBD00012414 /* DBHelper.swift */; };
+		E7F037D029E2327100012414 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F037CF29E2327100012414 /* Contact.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,13 +32,14 @@
 		E77BBB7729E092DA005B6339 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E77BBB7A29E092DA005B6339 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E77BBB7C29E092DA005B6339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E7A493BB29E21CEF008878E0 /* DBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
 		E7BC41F829E0A76200F841D6 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		E7BC41FA29E0A77800F841D6 /* ContactFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormViewController.swift; sourceTree = "<group>"; };
 		E7BC41FC29E0A78900F841D6 /* ContactListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
 		E7BC41FE29E0A79600F841D6 /* CreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
 		E7BC420029E0A7B100F841D6 /* ClientDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDetailViewController.swift; sourceTree = "<group>"; };
 		E7BC420229E0A7E400F841D6 /* EditClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClientViewController.swift; sourceTree = "<group>"; };
+		E7F037C629E22BBD00012414 /* DBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
+		E7F037CF29E2327100012414 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +56,6 @@
 		E77BBB6229E092D5005B6339 = {
 			isa = PBXGroup;
 			children = (
-				E7A493BB29E21CEF008878E0 /* DBHelper.swift */,
 				E77BBB6D29E092D6005B6339 /* Mobile-Final-Project */,
 				E77BBB6C29E092D6005B6339 /* Products */,
 			);
@@ -75,6 +76,7 @@
 				E77BBB7029E092D6005B6339 /* SceneDelegate.swift */,
 				E77BBB7229E092D6005B6339 /* ViewController.swift */,
 				E77BBB7429E092D6005B6339 /* Main.storyboard */,
+				E7F037C629E22BBD00012414 /* DBHelper.swift */,
 				E7BC41F829E0A76200F841D6 /* SplashViewController.swift */,
 				E7BC41FA29E0A77800F841D6 /* ContactFormViewController.swift */,
 				E7BC41FC29E0A78900F841D6 /* ContactListViewController.swift */,
@@ -84,6 +86,7 @@
 				E77BBB7729E092DA005B6339 /* Assets.xcassets */,
 				E77BBB7929E092DA005B6339 /* LaunchScreen.storyboard */,
 				E77BBB7C29E092DA005B6339 /* Info.plist */,
+				E7F037CF29E2327100012414 /* Contact.swift */,
 			);
 			path = "Mobile-Final-Project";
 			sourceTree = "<group>";
@@ -166,9 +169,10 @@
 				E77BBB6F29E092D6005B6339 /* AppDelegate.swift in Sources */,
 				E77BBB7129E092D6005B6339 /* SceneDelegate.swift in Sources */,
 				E7BC41FB29E0A77800F841D6 /* ContactFormViewController.swift in Sources */,
-				E7A493BC29E21CEF008878E0 /* DBHelper.swift in Sources */,
+				E7F037C829E22BBD00012414 /* DBHelper.swift in Sources */,
 				E7BC41F929E0A76200F841D6 /* SplashViewController.swift in Sources */,
 				E7BC41FD29E0A78900F841D6 /* ContactListViewController.swift in Sources */,
+				E7F037D029E2327100012414 /* Contact.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
