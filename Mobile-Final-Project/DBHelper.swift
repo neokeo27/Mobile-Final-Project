@@ -27,6 +27,7 @@ class DBHelper {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDir = paths[0]
         let path = (documentsDir as NSString).appendingPathComponent("myDB.sqlite")
+        //print("Path is: " + path)
         return path
     }
     
@@ -51,16 +52,30 @@ class DBHelper {
         sqlite3_finalize(statement)
     }
     
+    func droptable() {
+        let dropQuery = "DROP TABLE IF EXISTS myContacts"
+        var statement: OpaquePointer?
+        if sqlite3_prepare_v2(db, dropQuery, -1, &statement, nil) == SQLITE_OK {
+            if sqlite3_step(statement) != SQLITE_DONE {
+                print("Error dropping table")
+            } else {
+                print("table dropped")
+            }
+        }
+        sqlite3_finalize(statement)
+        
+    }
+    
     func insertContact(contact: Contact) {
         let insertQuery = "INSERT INTO myContacts (firstName, lastName, email, address, phone, note) VALUES (?, ?, ?, ?, ?, ?);"
         var statement: OpaquePointer?
         if sqlite3_prepare_v2(db, insertQuery, -1, &statement, nil) == SQLITE_OK {
-            sqlite3_bind_text(statement, 1, contact.firstName, -1, nil)
-            sqlite3_bind_text(statement, 2, contact.lastName, -1, nil)
-            sqlite3_bind_text(statement, 3, contact.email, -1, nil)
-            sqlite3_bind_text(statement, 4, contact.address, -1, nil)
-            sqlite3_bind_text(statement, 5, contact.phone, -1, nil)
-            sqlite3_bind_text(statement, 6, contact.note, -1, nil)
+            sqlite3_bind_text(statement, 1, (contact.firstName! as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 2, (contact.lastName! as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 3, (contact.email! as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 4, (contact.address! as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 5, (contact.phone! as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 6, (contact.note! as NSString).utf8String, -1, nil)
             if sqlite3_step(statement) != SQLITE_DONE {
                 print("Error inserting into table")
             } else {
@@ -71,8 +86,8 @@ class DBHelper {
     }
 
     func fetchAllContacts() -> [Contact] {
-        let selectQuery = "SELECT * FROM myContacts ORDER BY lastName ASC;"
-        return fetchRows(tableName: "myContacts", condition: selectQuery)
+        let selectCondition = "ORDER BY lastName ASC"
+        return fetchRows(tableName: "myContacts", condition: selectCondition)
     }
 
     private func fetchRows(tableName: String, condition: String) -> [Contact] {
@@ -110,6 +125,8 @@ class DBHelper {
             sqlite3_bind_int(statement, 7, Int32(contactID))
             if sqlite3_step(statement) != SQLITE_DONE {
                 print("Error updating contact")
+            } else {
+                print("contact updated")
             }
             sqlite3_finalize(statement)
         }
@@ -122,6 +139,8 @@ class DBHelper {
             sqlite3_bind_int(statement, 1, Int32(contactID))
             if sqlite3_step(statement) != SQLITE_DONE {
                 print("Error deleting contact")
+            } else {
+                print("contact deleted)")
             }
         sqlite3_finalize(statement)
         }

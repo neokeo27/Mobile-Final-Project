@@ -26,19 +26,10 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func populateList() {
+        dbHelper.openDB()
         contacts = dbHelper.fetchAllContacts()
+        dbHelper.closeDB()
 
-        for contact in contacts {
-            let firstName = contact.firstName
-            let lastName = contact.firstName
-            let email = contact.email
-            let address = contact.address
-            let phone = contact.phone
-            let note = contact.note
-            
-            let contact = Contact(firstName: firstName, lastName: lastName, email: email, address: address, phone: phone, note: note)
-            contacts.append(contact)
-        }
         listTableView.reloadData()
     }
     
@@ -51,7 +42,7 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
         let cell = listTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let contactName = cell.viewWithTag(1) as! UILabel
         //contactName.text = contacts[indexPath.row]
-        contactName.text = "\(contacts[indexPath.row].lastName ?? ""), \(contacts[indexPath.row].lastName ?? "")"
+        contactName.text = "\(contacts[indexPath.row].lastName ?? ""), \(contacts[indexPath.row].firstName ?? "")"
         return cell
     }
     

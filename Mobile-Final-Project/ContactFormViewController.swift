@@ -30,13 +30,12 @@ class ContactFormViewController: UIViewController {
 
         dbHelper.openDB()
         dbHelper.createTable()
+        //dbHelper.droptable()
         dbHelper.closeDB()
     }
 
     @IBAction func btnSaveContact(_ sender: UIButton) {
-        dbHelper.openDB()
         saveData()
-        dbHelper.closeDB()
     }
     
     func saveData() {
@@ -47,6 +46,18 @@ class ContactFormViewController: UIViewController {
         phone = txtPhone.text
         note = txtNote.text
         let newContact = Contact(firstName: firstName, lastName: lastName, email: email, address: address, phone: phone, note: note)
+        dbHelper.openDB()
         dbHelper.insertContact(contact: newContact)
+        dbHelper.closeDB()
+        clearForm()
+    }
+    
+    func clearForm() {
+        txtFirstName.text = ""
+        txtLastName.text = ""
+        txtEmail.text = ""
+        txtAddress.text = ""
+        txtPhone.text = ""
+        txtNote.text = ""
     }
 }
