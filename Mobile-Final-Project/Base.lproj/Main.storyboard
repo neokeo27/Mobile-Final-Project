@@ -282,7 +282,7 @@
             <objects>
                 <viewController title="ClientDetail" id="jMK-p4-hXg" customClass="ClientDetailViewController" customModule="Mobile_Final_Project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qes-07-09Y">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contact Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2VB-sg-hY9">
@@ -397,7 +397,7 @@
                                 </state>
                                 <connections>
                                     <action selector="btnEdit:" destination="jMK-p4-hXg" eventType="touchUpInside" id="flC-v9-bX1"/>
-                                    <segue destination="qJV-wg-7yJ" kind="show" id="xyF-2N-Qep"/>
+                                    <segue destination="qJV-wg-7yJ" kind="show" identifier="segueShowEdit" id="xyF-2N-Qep"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxY-zw-fof">
@@ -438,7 +438,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DOZ-Ib-5pk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3554.9618320610684" y="1488.7323943661972"/>
+            <point key="canvasLocation" x="-4483" y="1561"/>
         </scene>
         <!--EditClient-->
         <scene sceneID="giF-8s-TVw">
@@ -563,7 +563,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yTp-xR-ZZN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2888" y="1489"/>
+            <point key="canvasLocation" x="-2563" y="1489"/>
         </scene>
         <!--CreditsPage-->
         <scene sceneID="r4m-Mo-8DM">
@@ -573,45 +573,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="nscc-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Oh4-7c-vXz">
-                                <rect key="frame" x="46" y="152" width="300" height="90"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nscc-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Oh4-7c-vXz">
+                                <rect key="frame" x="46.666666666666657" y="152" width="300" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Contacts App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5P1-5Q-kX6">
-                                <rect key="frame" x="107" y="250" width="178" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contacts App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5P1-5Q-kX6">
+                                <rect key="frame" x="107.66666666666669" y="250" width="178" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="MOBI 3001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MkE-NX-lBE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MOBI 3001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MkE-NX-lBE">
                                 <rect key="frame" x="124" y="343" width="144" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Created by Jordan Keough" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvB-a7-GEP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Created by Jordan Keough" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvB-a7-GEP">
                                 <rect key="frame" x="79.666666666666686" y="524" width="234" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="OeS-cu-aVj"/>
-                                    <constraint firstAttribute="width" constant="234" id="dcv-2U-I2Z"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker userInteractionEnabled="NO" contentMode="center" ambiguous="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Zxt-eR-7ag">
+                            <datePicker userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Zxt-eR-7ag">
                                 <rect key="frame" x="0.0" y="397" width="393" height="34.333333333333314"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ftA-7V-l3f"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Oh4-7c-vXz" firstAttribute="centerX" secondItem="ftA-7V-l3f" secondAttribute="centerX" id="O2R-Dn-EKp"/>
-                            <constraint firstItem="Zxt-eR-7ag" firstAttribute="centerX" secondItem="ftA-7V-l3f" secondAttribute="centerX" id="UjD-el-8LX"/>
-                            <constraint firstItem="Zxt-eR-7ag" firstAttribute="centerY" secondItem="ftA-7V-l3f" secondAttribute="centerY" id="gpx-ev-zk8"/>
-                            <constraint firstItem="Zxt-eR-7ag" firstAttribute="leading" secondItem="MkE-NX-lBE" secondAttribute="trailing" constant="-268" id="gwb-Cz-SdU"/>
-                            <constraint firstItem="VvB-a7-GEP" firstAttribute="centerX" secondItem="ftA-7V-l3f" secondAttribute="centerX" id="uvH-rD-TpW"/>
-                            <constraint firstItem="5P1-5Q-kX6" firstAttribute="centerX" secondItem="ftA-7V-l3f" secondAttribute="centerX" id="yaJ-Ks-79W"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Credits" image="info.square" catalog="system" landscapeImage="info.square" largeContentSizeImage="info.square" id="j6s-jm-tLy"/>
                 </viewController>
@@ -621,7 +614,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="t7i-H5-DBN"/>
+        <segue reference="xyF-2N-Qep"/>
+        <segue reference="BgZ-ng-sB7"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>

@@ -55,6 +55,7 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
         if (segue.identifier == "segueShowContact") {
             let vc = segue.destination as! ClientDetailViewController
             vc.selectedContact = contacts[selectedCellIdx]
+            vc.onDeleteContact = { [weak self] in self?.listTableView.reloadData()}
         }
     }
 }

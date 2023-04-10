@@ -116,11 +116,11 @@ class DBHelper {
         let updateQuery = "UPDATE myContacts SET firstName = ?, lastName = ?, email = ?, address = ?, phone = ? WHERE id = ?;"
         var statement: OpaquePointer?
         if sqlite3_prepare_v2(db, updateQuery, -1, &statement, nil) == SQLITE_OK {
-            sqlite3_bind_text(statement, 1, contact.firstName, -1, nil)
-            sqlite3_bind_text(statement, 2, contact.lastName, -1, nil)
-            sqlite3_bind_text(statement, 3, contact.email, -1, nil)
-            sqlite3_bind_text(statement, 4, contact.address, -1, nil)
-            sqlite3_bind_text(statement, 5, contact.phone, -1, nil)
+            sqlite3_bind_text(statement, 1, (contact.firstName! as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 2, (contact.lastName! as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 3, (contact.email! as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 4, (contact.address! as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 5, (contact.phone! as NSString).utf8String, -1, nil)
             sqlite3_bind_int(statement, 6, Int32(contactID))
             if sqlite3_step(statement) != SQLITE_DONE {
                 print("Error updating contact")
@@ -135,7 +135,7 @@ class DBHelper {
         let updateQuery = "UPDATE myContacts SET note = ? WHERE id = ?;"
         var statement: OpaquePointer?
         if sqlite3_prepare_v2(db, updateQuery, -1, &statement, nil) == SQLITE_OK {
-            sqlite3_bind_text(statement, 1, contact.note, -1, nil)
+            sqlite3_bind_text(statement, 1, (contact.note! as NSString).utf8String, -1, nil)
             sqlite3_bind_int(statement, 2, Int32(contactID))
             if sqlite3_step(statement) != SQLITE_DONE {
                 print("error updating contact note")
@@ -154,7 +154,6 @@ class DBHelper {
     }
 
     func isPhoneValid(phone: String) -> Bool {
-        //let phoneRegex = "^(\\+\\d{1,2}\\s)?\\(?\\d{1,3}\\)?[-.\\s]?\\d{1-3}[-.\\s]?\\d{1-4}$"
         let phoneRegex = "^(\\+\\d{1,2}\\s)?\\(?\\d{1,3}\\)?[-.\\s]?\\d{1,3}[-.\\s]?\\d{1,4}$"
 
         let phonePredicate = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
@@ -177,16 +176,31 @@ class DBHelper {
         }
         return isUnique
     }
+    
+    func getContactId(email: String) -> Int {
+        let selectQuery = "SELECT id FROM myContacts WHERE email = ?;"
+        var statement: OpaquePointer?
+        var contactID: Int = 0
+        
+        if sqlite3_prepare_v2(db, selectQuery, -1, &statement, nil) == SQLITE_OK {
+            sqlite3_bind_text(statement, 1, (email as NSString).utf8String, -1, nil)
+            if sqlite3_step(statement) == SQLITE_ROW {
+                contactID = Int(sqlite3_column_int(statement, 0))
+            }
+        }
+        sqlite3_finalize(statement)
+        return contactID
+    }
 
     func deleteContact(contactID: Int) {
-        let deleteQuery = "DELETE FROM Contacts WHERE id = ?;"
+        let deleteQuery = "DELETE FROM myContacts WHERE id = ?;"
         var statement: OpaquePointer?
         if sqlite3_prepare_v2(db, deleteQuery, -1, &statement, nil) == SQLITE_OK {
             sqlite3_bind_int(statement, 1, Int32(contactID))
             if sqlite3_step(statement) != SQLITE_DONE {
                 print("Error deleting contact")
             } else {
-                print("contact deleted)")
+                print("contact deleted")
             }
         sqlite3_finalize(statement)
         }

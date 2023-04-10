@@ -17,6 +17,10 @@ class ClientDetailViewController: UIViewController {
     @IBOutlet weak var txtNote: UITextView!
     
     var selectedContact : Contact!
+    var contactID : Int!
+    let dbHelper = DBHelper.shared
+    
+    var onDeleteContact: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +38,10 @@ class ClientDetailViewController: UIViewController {
     }
     
     @IBAction func btnSaveNote(_ sender: UIButton) {
-        
+        dbHelper.openDB()
+        contactID = dbHelper.getContactId(email: selectedContact.email!)
+        dbHelper.updateNote(contactID: contactID, contact: selectedContact)
+        dbHelper.closeDB()
     }
     
     @IBAction func btnClose(_ sender: UIButton) {
@@ -42,11 +49,39 @@ class ClientDetailViewController: UIViewController {
     }
     
     @IBAction func btnEdit(_ sender: UIButton) {
-        
+        self.performSegue(withIdentifier: "segueShowEdit", sender: nil)
     }
     
     @IBAction func btnDelete(_ sender: UIButton) {
-        
+        deleteContact()
+    }
+    
+    func deleteContact() {
+        dbHelper.openDB()
+        contactID = dbHelper.getContactId(email: selectedContact.email!)
+        dbHelper.closeDB()
+        let controller = UIAlertController(title: "Delete?", message: "Are you sure?", preferredStyle: .actionSheet)
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in return }
+
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            self.dbHelper.openDB()
+            self.dbHelper.deleteContact(contactID: self.contactID)
+            self.dbHelper.closeDB()
+            self.onDeleteContact?()
+            self.dismiss(animated: true)
+        }
+        controller.addAction(cancelAction)
+        controller.addAction(deleteAction)
+
+        present(controller, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "segueShowEdit") {
+            let vc = segue.destination as! EditClientViewController
+            vc.editContact = selectedContact
+        }
     }
     
 }
