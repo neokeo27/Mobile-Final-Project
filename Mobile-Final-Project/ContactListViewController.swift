@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContactListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ContactListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ClientDetailViewControllerDelegate {
     
     @IBOutlet weak var listTableView: UITableView!
     
@@ -21,19 +21,17 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
 
         listTableView.dataSource = self
         listTableView.delegate = self
-        
+        //listTableView.reloadData()
         populateList()
+        listTableView.reloadData()
     }
     
     func populateList() {
         dbHelper.openDB()
         contacts = dbHelper.fetchAllContacts()
         dbHelper.closeDB()
-
-        listTableView.reloadData()
     }
     
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contacts.count
     }
@@ -50,12 +48,17 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
         selectedCellIdx = indexPath.row
         self.performSegue(withIdentifier: "segueShowContact", sender: nil)
     }
+    
+    func didDelete() {
+        listTableView.reloadData()
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "segueShowContact") {
             let vc = segue.destination as! ClientDetailViewController
             vc.selectedContact = contacts[selectedCellIdx]
-            vc.onDeleteContact = { [weak self] in self?.listTableView.reloadData()}
+//            vc.onDeleteContact = { [weak self] in self?.listTableView.reloadData()}
+            vc.delegate = self
         }
     }
 }

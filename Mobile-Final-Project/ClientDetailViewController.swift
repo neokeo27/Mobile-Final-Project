@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ClientDetailViewControllerDelegate: AnyObject {
+    func didDelete()
+}
+
 class ClientDetailViewController: UIViewController {
     
     @IBOutlet weak var lblFirstName: UILabel!
@@ -20,7 +24,8 @@ class ClientDetailViewController: UIViewController {
     var contactID : Int!
     let dbHelper = DBHelper.shared
     
-    var onDeleteContact: (() -> Void)?
+//    var onDeleteContact: (() -> Void)
+    weak var delegate: ClientDetailViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +59,7 @@ class ClientDetailViewController: UIViewController {
     
     @IBAction func btnDelete(_ sender: UIButton) {
         deleteContact()
+        delegate?.didDelete()
     }
     
     func deleteContact() {
@@ -68,7 +74,7 @@ class ClientDetailViewController: UIViewController {
             self.dbHelper.openDB()
             self.dbHelper.deleteContact(contactID: self.contactID)
             self.dbHelper.closeDB()
-            self.onDeleteContact?()
+//            self.onDeleteContact?()
             self.dismiss(animated: true)
         }
         controller.addAction(cancelAction)
