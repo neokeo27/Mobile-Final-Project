@@ -16,7 +16,7 @@ class ClientDetailViewController: UIViewController {
     @IBOutlet weak var lblPhone: UILabel!
     @IBOutlet weak var txtNote: UITextView!
     
-    var selectedContact : Contact
+    var selectedContact : Contact!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class ClientDetailViewController: UIViewController {
     }
     
     @IBAction func btnClose(_ sender: UIButton) {
-        
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func btnEdit(_ sender: UIButton) {

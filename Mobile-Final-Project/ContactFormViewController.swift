@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContactFormViewController: UIViewController {
+class ContactFormViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var txtFirstName: UITextField!
     @IBOutlet weak var txtLastName: UITextField!
@@ -28,6 +28,8 @@ class ContactFormViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        txtNote.delegate = self
+        
         dbHelper.openDB()
         dbHelper.createTable()
         //dbHelper.droptable()
@@ -36,7 +38,36 @@ class ContactFormViewController: UIViewController {
 
     @IBAction func btnSaveContact(_ sender: UIButton) {
         saveData()
-        clearForm()
+    }
+    
+    func validateData(email: String!, phone: String!) -> Bool{
+        if !dbHelper.isEmailValid(email: email!) {
+            let controller = UIAlertController(title: "Error", message: "Email is invalid", preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            controller.addAction(cancelAction)
+
+            present(controller, animated: true, completion: nil)
+            return false
+        }
+        
+        if !dbHelper.isEmailUnique(email: email!) {
+            let controller = UIAlertController(title: "Error", message: "Email already exists", preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            controller.addAction(cancelAction)
+
+            present(controller, animated: true, completion: nil)
+            return false
+        }
+        
+        if !dbHelper.isPhoneValid(phone: phone!) {
+            let controller = UIAlertController(title: "Error", message: "Phone Number is invalid", preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            controller.addAction(cancelAction)
+
+            present(controller, animated: true, completion: nil)
+            return false
+        }
+        return true
     }
     
     func saveData() {
@@ -46,10 +77,19 @@ class ContactFormViewController: UIViewController {
         address = txtAddress.text
         phone = txtPhone.text
         note = txtNote.text
-        let newContact = Contact(firstName: firstName, lastName: lastName, email: email, address: address, phone: phone, note: note)
-        dbHelper.openDB()
-        dbHelper.insertContact(contact: newContact)
-        dbHelper.closeDB()
+        
+        if validateData(email: email, phone: phone) {
+            let newContact = Contact(firstName: firstName, lastName: lastName, email: email, address: address, phone: phone, note: note)
+            dbHelper.openDB()
+            dbHelper.insertContact(contact: newContact)
+            dbHelper.closeDB()
+            let controller = UIAlertController(title: "Success!", message: "Contact is Saved", preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            controller.addAction(cancelAction)
+
+            present(controller, animated: true, completion: nil)
+            clearForm()
+        }
     }
     
     func clearForm() {
@@ -59,6 +99,19 @@ class ContactFormViewController: UIViewController {
         txtAddress.text = ""
         txtPhone.text = ""
         txtNote.text = ""
+    }
+    
+    @IBAction func textFieldDone(sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
+    @IBAction func onBackgroundTap(_ sender: Any) {
+        txtFirstName.resignFirstResponder()
+        txtLastName.resignFirstResponder()
+        txtEmail.resignFirstResponder()
+        txtAddress.resignFirstResponder()
+        txtPhone.resignFirstResponder()
+        txtNote.resignFirstResponder()
     }
     
 }
