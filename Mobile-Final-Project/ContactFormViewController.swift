@@ -36,6 +36,7 @@ class ContactFormViewController: UIViewController {
 
     @IBAction func btnSaveContact(_ sender: UIButton) {
         saveData()
+        clearForm()
     }
     
     func saveData() {
@@ -49,7 +50,6 @@ class ContactFormViewController: UIViewController {
         dbHelper.openDB()
         dbHelper.insertContact(contact: newContact)
         dbHelper.closeDB()
-        clearForm()
     }
     
     func clearForm() {
@@ -60,4 +60,5 @@ class ContactFormViewController: UIViewController {
         txtPhone.text = ""
         txtNote.text = ""
     }
+    
 }

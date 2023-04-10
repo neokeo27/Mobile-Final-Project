@@ -40,8 +40,8 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = listTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
         let contactName = cell.viewWithTag(1) as! UILabel
-        //contactName.text = contacts[indexPath.row]
         contactName.text = "\(contacts[indexPath.row].lastName ?? ""), \(contacts[indexPath.row].firstName ?? "")"
         return cell
     }

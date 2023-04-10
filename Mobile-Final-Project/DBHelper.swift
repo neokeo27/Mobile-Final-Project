@@ -27,7 +27,7 @@ class DBHelper {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDir = paths[0]
         let path = (documentsDir as NSString).appendingPathComponent("myDB.sqlite")
-        //print("Path is: " + path)
+        print("Path is: " + path)
         return path
     }
     
