@@ -24,7 +24,6 @@ class ClientDetailViewController: UIViewController {
     var contactID : Int!
     let dbHelper = DBHelper.shared
     
-//    var onDeleteContact: (() -> Void)
     weak var delegate: ClientDetailViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -43,10 +42,10 @@ class ClientDetailViewController: UIViewController {
     }
     
     @IBAction func btnSaveNote(_ sender: UIButton) {
-        dbHelper.openDB()
-        contactID = dbHelper.getContactId(email: selectedContact.email!)
-        dbHelper.updateNote(contactID: contactID, contact: selectedContact)
-        dbHelper.closeDB()
+        getContactID()
+        let newNote = txtNote.text
+        selectedContact.note = newNote
+        updateNote()
     }
     
     @IBAction func btnClose(_ sender: UIButton) {
@@ -59,7 +58,19 @@ class ClientDetailViewController: UIViewController {
     
     @IBAction func btnDelete(_ sender: UIButton) {
         deleteContact()
-        delegate?.didDelete()
+    }
+    
+    func getContactID() {
+        dbHelper.openDB()
+        contactID = dbHelper.getContactId(email: selectedContact.email!)
+        dbHelper.closeDB()
+        print("id is: \(String(describing: contactID))")
+    }
+    
+    func updateNote() {
+        dbHelper.openDB()
+        dbHelper.updateNote(contactID: contactID, contact: selectedContact)
+        dbHelper.closeDB()
     }
     
     func deleteContact() {
@@ -74,7 +85,8 @@ class ClientDetailViewController: UIViewController {
             self.dbHelper.openDB()
             self.dbHelper.deleteContact(contactID: self.contactID)
             self.dbHelper.closeDB()
-//            self.onDeleteContact?()
+            self.delegate?.didDelete()
+
             self.dismiss(animated: true)
         }
         controller.addAction(cancelAction)
@@ -90,4 +102,11 @@ class ClientDetailViewController: UIViewController {
         }
     }
     
+    @IBAction func textFieldDone(sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
+    @IBAction func onBackgroundTap(_ sender: Any) {
+        txtNote.resignFirstResponder()
+    }
 }

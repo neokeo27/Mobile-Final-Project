@@ -21,7 +21,16 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
 
         listTableView.dataSource = self
         listTableView.delegate = self
-        //listTableView.reloadData()
+        populateList()
+        listTableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        populateList()
+        listTableView.reloadData()
+    }
+    
+    func didDelete() {
         populateList()
         listTableView.reloadData()
     }
@@ -50,16 +59,13 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
         self.performSegue(withIdentifier: "segueShowContact", sender: nil)
     }
     
-    func didDelete() {
-        listTableView.reloadData()
-    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "segueShowContact") {
-            let vc = segue.destination as! ClientDetailViewController
-            vc.selectedContact = contacts[selectedCellIdx]
-//            vc.onDeleteContact = { [weak self] in self?.listTableView.reloadData()}
-            vc.delegate = self
+            if let vc = segue.destination as? ClientDetailViewController {
+                vc.delegate = self
+                vc.selectedContact = contacts[selectedCellIdx]
+            }
         }
     }
 }

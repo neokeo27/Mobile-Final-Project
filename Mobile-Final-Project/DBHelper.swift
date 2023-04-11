@@ -27,7 +27,10 @@ class DBHelper {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDir = paths[0]
         let path = (documentsDir as NSString).appendingPathComponent("myDB.sqlite")
+        
+        //had to find DB location to view in DBBrowser for debugging
         print("Path is: " + path)
+        
         return path
     }
     
@@ -114,6 +117,7 @@ class DBHelper {
 
     func updateContact(contactID: Int, contact: Contact) {
         let updateQuery = "UPDATE myContacts SET firstName = ?, lastName = ?, email = ?, address = ?, phone = ? WHERE id = ?;"
+        //let updateQuery = "UPDATE myContacts SET firstName = ?, lastName = ?, email = ?, address = ?, phone = ?, note = ? WHERE id = ?;"
         var statement: OpaquePointer?
         if sqlite3_prepare_v2(db, updateQuery, -1, &statement, nil) == SQLITE_OK {
             sqlite3_bind_text(statement, 1, (contact.firstName! as NSString).utf8String, -1, nil)
@@ -121,6 +125,8 @@ class DBHelper {
             sqlite3_bind_text(statement, 3, (contact.email! as NSString).utf8String, -1, nil)
             sqlite3_bind_text(statement, 4, (contact.address! as NSString).utf8String, -1, nil)
             sqlite3_bind_text(statement, 5, (contact.phone! as NSString).utf8String, -1, nil)
+//            sqlite3_bind_text(statement, 6, (contact.note! as NSString).utf8String, -1, nil)
+//            sqlite3_bind_int(statement, 7, Int32(contactID))
             sqlite3_bind_int(statement, 6, Int32(contactID))
             if sqlite3_step(statement) != SQLITE_DONE {
                 print("Error updating contact")
@@ -155,6 +161,7 @@ class DBHelper {
 
     func isPhoneValid(phone: String) -> Bool {
         let phoneRegex = "^(\\+\\d{1,2}\\s)?\\(?\\d{1,3}\\)?[-.\\s]?\\d{1,3}[-.\\s]?\\d{1,4}$"
+        //let phoneRegex = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$"
 
         let phonePredicate = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
         return phonePredicate.evaluate(with: phone)

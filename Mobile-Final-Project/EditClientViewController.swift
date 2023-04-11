@@ -16,11 +16,11 @@ class EditClientViewController: UIViewController {
     @IBOutlet weak var editPhone: UITextField!
     @IBOutlet weak var textNote: UITextView!
     
-    var firstName: String?
-    var lastName: String?
-    var email: String?
-    var address: String?
-    var phone: String?
+    var newFirstName: String?
+    var newLastName: String?
+    var newEmail: String?
+    var newAddress: String?
+    var newPhone: String?
     
     var contactID: Int!
     
@@ -35,7 +35,7 @@ class EditClientViewController: UIViewController {
     
     @IBAction func btnSaveContact(_ sender: UIButton) {
         saveData()
-        self.dismiss(animated: true)
+        dismiss(animated: true)
     }
     
     func populateDetails() {
@@ -48,24 +48,34 @@ class EditClientViewController: UIViewController {
     }
     
     func saveData() {
-        firstName = editFirstName.text
-        lastName = editLastName.text
-        email = editEmail.text
-        address = editAddress.text
-        phone = editPhone.text
+        newFirstName = editFirstName.text
+        newLastName = editLastName.text
+        newEmail = editEmail.text
+        newAddress = editAddress.text
+        newPhone = editPhone.text
         
-        if validateData(email: email, phone: phone) {
-            dbHelper.openDB()
-            contactID = dbHelper.getContactId(email: email!)
-            dbHelper.updateContact(contactID: contactID, contact: editContact)
-            dbHelper.closeDB()
+        if validateData(email: newEmail, phone: newPhone) {
+            getContactID()
+            updateContact()
             
-            let controller = UIAlertController(title: "Success!", message: "Contact has been Updates", preferredStyle: .actionSheet)
+            let controller = UIAlertController(title: "Success!", message: "Contact has been Updated", preferredStyle: .actionSheet)
             let cancelAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             controller.addAction(cancelAction)
             
             present(controller, animated: true, completion: nil)
         }
+    }
+    
+    func getContactID() {
+        dbHelper.openDB()
+        contactID = dbHelper.getContactId(email: newEmail!)
+        dbHelper.closeDB()
+    }
+    
+    func updateContact() {
+        dbHelper.openDB()
+        dbHelper.updateContact(contactID: contactID, contact: editContact)
+        dbHelper.closeDB()
     }
     
     func validateData(email: String!, phone: String!) -> Bool{
@@ -87,5 +97,22 @@ class EditClientViewController: UIViewController {
             return false
         }
         return true
+    }
+    
+    @IBAction func btnClose(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func textFieldDone(sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
+    @IBAction func onBackgroundTap(_ sender: Any) {
+        editFirstName.resignFirstResponder()
+        editLastName.resignFirstResponder()
+        editEmail.resignFirstResponder()
+        editAddress.resignFirstResponder()
+        editPhone.resignFirstResponder()
+        textNote.resignFirstResponder()
     }
 }
