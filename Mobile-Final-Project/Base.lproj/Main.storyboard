@@ -354,9 +354,6 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Hcr-uQ-Iig">
                                 <rect key="frame" x="59" y="506" width="275" height="144"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="144" id="Tu9-dq-2vM"/>
-                                </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -502,7 +499,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPm-bP-ebH">
-                                <rect key="frame" x="136" y="678" width="121" height="34"/>
+                                <rect key="frame" x="136" y="703" width="121" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="121" id="Zov-26-DTO"/>
                                 </constraints>
@@ -521,8 +518,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2S2-Ca-fnd"/>
                         <color key="backgroundColor" name="AccentColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Pf0-Z5-BL1" firstAttribute="leading" secondItem="2S2-Ca-fnd" secondAttribute="leading" constant="55" id="3Nx-YY-SAN"/>
+                            <constraint firstItem="2S2-Ca-fnd" firstAttribute="trailing" secondItem="bxY-zw-fof" secondAttribute="trailing" constant="59" id="3yi-7a-Pmn"/>
                             <constraint firstItem="2S2-Ca-fnd" firstAttribute="trailing" secondItem="Hcr-uQ-Iig" secondAttribute="trailing" constant="59" id="4ck-QU-PhK"/>
                             <constraint firstItem="K1t-R0-PyE" firstAttribute="leading" secondItem="2S2-Ca-fnd" secondAttribute="leading" constant="55" id="4hq-x8-E44"/>
                             <constraint firstItem="DeQ-oq-Xln" firstAttribute="top" secondItem="M9V-Dd-ZbI" secondAttribute="bottom" constant="21" id="9TY-Zo-fTs"/>
@@ -532,35 +531,37 @@
                             <constraint firstItem="K1t-R0-PyE" firstAttribute="top" secondItem="Pf0-Z5-BL1" secondAttribute="bottom" constant="8" symbolic="YES" id="CPV-aV-Tk7"/>
                             <constraint firstItem="Hcr-uQ-Iig" firstAttribute="centerX" secondItem="2S2-Ca-fnd" secondAttribute="centerX" id="CVp-EI-isw"/>
                             <constraint firstItem="j58-uv-qb3" firstAttribute="top" secondItem="2S2-Ca-fnd" secondAttribute="top" constant="20" id="DmK-hR-3ia"/>
-                            <constraint firstItem="2S2-Ca-fnd" firstAttribute="trailing" secondItem="bxY-zw-fof" secondAttribute="trailing" constant="59" id="DwA-To-kGy"/>
+                            <constraint firstItem="8du-6p-7Zh" firstAttribute="leading" secondItem="2S2-Ca-fnd" secondAttribute="leading" constant="56" id="FYh-G6-ood"/>
                             <constraint firstItem="LXP-ij-uPT" firstAttribute="leading" secondItem="2S2-Ca-fnd" secondAttribute="leading" constant="56" id="HEU-od-dct"/>
-                            <constraint firstItem="8du-6p-7Zh" firstAttribute="top" secondItem="qPm-bP-ebH" secondAttribute="bottom" constant="52" id="HNC-1k-Dxa"/>
                             <constraint firstItem="Rsj-1x-RdZ" firstAttribute="top" secondItem="K1t-R0-PyE" secondAttribute="bottom" constant="21" id="HX0-Mv-PKQ"/>
-                            <constraint firstItem="bxY-zw-fof" firstAttribute="top" secondItem="qPm-bP-ebH" secondAttribute="bottom" constant="52" id="Iw9-8U-4JQ"/>
                             <constraint firstItem="5XP-Sv-YSg" firstAttribute="leading" secondItem="2S2-Ca-fnd" secondAttribute="leading" constant="55" id="J52-ii-NIn"/>
-                            <constraint firstItem="2S2-Ca-fnd" firstAttribute="bottom" secondItem="bxY-zw-fof" secondAttribute="bottom" constant="44" id="KfJ-zF-Xov"/>
                             <constraint firstItem="wf7-gr-VW7" firstAttribute="top" secondItem="2VB-sg-hY9" secondAttribute="bottom" constant="27" id="Kq9-AL-XBd"/>
+                            <constraint firstItem="8du-6p-7Zh" firstAttribute="top" secondItem="qPm-bP-ebH" secondAttribute="bottom" constant="27" id="N3P-vW-Or6"/>
                             <constraint firstItem="5XP-Sv-YSg" firstAttribute="top" secondItem="GqJ-t8-PDc" secondAttribute="bottom" constant="17" id="S1z-au-wYa"/>
                             <constraint firstItem="uGO-A6-el1" firstAttribute="top" secondItem="wf7-gr-VW7" secondAttribute="bottom" constant="8" symbolic="YES" id="TAG-lB-Z2j"/>
                             <constraint firstItem="DeQ-oq-Xln" firstAttribute="leading" secondItem="2S2-Ca-fnd" secondAttribute="leading" constant="55" id="TvT-f5-jxJ"/>
-                            <constraint firstItem="qPm-bP-ebH" firstAttribute="top" secondItem="Hcr-uQ-Iig" secondAttribute="bottom" constant="28" id="UtQ-6r-5mc"/>
+                            <constraint firstItem="2S2-Ca-fnd" firstAttribute="bottom" secondItem="8du-6p-7Zh" secondAttribute="bottom" constant="44" id="WUO-KH-lIl"/>
                             <constraint firstItem="M9V-Dd-ZbI" firstAttribute="leading" secondItem="2S2-Ca-fnd" secondAttribute="leading" constant="55" id="Y5c-vr-T3c"/>
-                            <constraint firstItem="8du-6p-7Zh" firstAttribute="leading" secondItem="2S2-Ca-fnd" secondAttribute="leading" constant="56" id="YIq-6q-wiD"/>
                             <constraint firstItem="qPm-bP-ebH" firstAttribute="centerX" secondItem="2S2-Ca-fnd" secondAttribute="centerX" id="Zgs-0g-TGD"/>
+                            <constraint firstItem="2S2-Ca-fnd" firstAttribute="bottom" secondItem="bxY-zw-fof" secondAttribute="bottom" constant="44" id="ajY-sn-6Us"/>
                             <constraint firstItem="GqJ-t8-PDc" firstAttribute="leading" secondItem="2S2-Ca-fnd" secondAttribute="leading" constant="55" id="aml-Ht-P9y"/>
                             <constraint firstItem="Hcr-uQ-Iig" firstAttribute="top" secondItem="5XP-Sv-YSg" secondAttribute="bottom" constant="8" symbolic="YES" id="d5Y-AK-N21"/>
                             <constraint firstItem="W7d-BN-PPL" firstAttribute="leading" secondItem="2S2-Ca-fnd" secondAttribute="leading" constant="56" id="fye-eo-oOv"/>
                             <constraint firstItem="uGO-A6-el1" firstAttribute="leading" secondItem="2S2-Ca-fnd" secondAttribute="leading" constant="55" id="gqI-YE-A0G"/>
                             <constraint firstItem="2VB-sg-hY9" firstAttribute="centerX" secondItem="2S2-Ca-fnd" secondAttribute="centerX" id="gvn-C3-x98"/>
+                            <constraint firstItem="qPm-bP-ebH" firstAttribute="top" secondItem="Hcr-uQ-Iig" secondAttribute="bottom" constant="53" id="hb7-By-P8W"/>
                             <constraint firstItem="Pf0-Z5-BL1" firstAttribute="top" secondItem="uGO-A6-el1" secondAttribute="bottom" constant="21" id="jl0-ys-pkh"/>
                             <constraint firstItem="Rsj-1x-RdZ" firstAttribute="leading" secondItem="2S2-Ca-fnd" secondAttribute="leading" constant="55" id="m4A-hY-XJp"/>
                             <constraint firstItem="wf7-gr-VW7" firstAttribute="leading" secondItem="2S2-Ca-fnd" secondAttribute="leading" constant="55" id="nzK-jO-6hN"/>
                             <constraint firstItem="2VB-sg-hY9" firstAttribute="top" secondItem="2S2-Ca-fnd" secondAttribute="top" constant="63" id="pxp-fW-o9a"/>
                             <constraint firstItem="LXP-ij-uPT" firstAttribute="top" secondItem="W7d-BN-PPL" secondAttribute="bottom" constant="21" id="twx-Rj-zUU"/>
                             <constraint firstItem="M9V-Dd-ZbI" firstAttribute="top" secondItem="LXP-ij-uPT" secondAttribute="bottom" constant="8" symbolic="YES" id="uoz-Xz-rPG"/>
+                            <constraint firstItem="bxY-zw-fof" firstAttribute="top" secondItem="qPm-bP-ebH" secondAttribute="bottom" constant="27" id="v5F-oJ-ZS6"/>
                             <constraint firstItem="j58-uv-qb3" firstAttribute="leading" secondItem="2S2-Ca-fnd" secondAttribute="leading" constant="16" id="vYT-Y3-5qM"/>
-                            <constraint firstItem="2S2-Ca-fnd" firstAttribute="bottom" secondItem="8du-6p-7Zh" secondAttribute="bottom" constant="44" id="vw1-UU-hcY"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="gCB-b0-GJg" appends="YES" id="r1y-I0-VMC"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="vLA-cq-Hu6"/>
                     <connections>
@@ -573,6 +574,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DOZ-Ib-5pk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="gCB-b0-GJg">
+                    <connections>
+                        <action selector="onBackgroundTap:" destination="jMK-p4-hXg" id="QmK-wK-MOg"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-4483.2061068702287" y="1560.5633802816901"/>
         </scene>
@@ -616,6 +622,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldDoneWithSender:" destination="qJV-wg-7yJ" eventType="editingDidEndOnExit" id="eKs-9R-8no"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06s-9H-yXZ">
                                 <rect key="frame" x="56" y="135" width="92" height="21"/>
@@ -656,6 +665,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldDoneWithSender:" destination="qJV-wg-7yJ" eventType="editingDidEndOnExit" id="vdh-Xh-IgX"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azC-0t-bTI">
                                 <rect key="frame" x="56" y="277" width="50" height="21"/>
@@ -675,6 +687,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="yes" textContentType="email"/>
+                                <connections>
+                                    <action selector="textFieldDoneWithSender:" destination="qJV-wg-7yJ" eventType="editingDidEndOnExit" id="piR-FF-qqo"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uur-a8-6tn">
                                 <rect key="frame" x="57" y="348" width="72" height="21"/>
@@ -694,6 +709,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldDoneWithSender:" destination="qJV-wg-7yJ" eventType="editingDidEndOnExit" id="p4k-4l-xfy"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone #:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPq-4I-GxB">
                                 <rect key="frame" x="56" y="419" width="68" height="21"/>
@@ -713,6 +731,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="yes" textContentType="tel"/>
+                                <connections>
+                                    <action selector="textFieldDoneWithSender:" destination="qJV-wg-7yJ" eventType="editingDidEndOnExit" id="ueg-FV-LwN"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbP-zG-X35">
                                 <rect key="frame" x="56" y="486" width="46" height="21"/>
@@ -741,6 +762,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lQ2-He-DsX"/>
                         <color key="backgroundColor" name="AccentColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="fxs-Y0-mW5" firstAttribute="centerX" secondItem="lQ2-He-DsX" secondAttribute="centerX" id="18t-WQ-jXz"/>
                             <constraint firstItem="VfR-pF-h5X" firstAttribute="top" secondItem="sTA-mA-mqG" secondAttribute="bottom" constant="8" symbolic="YES" id="3TP-Od-FjM"/>
@@ -773,6 +795,9 @@
                             <constraint firstItem="gyB-fr-0vH" firstAttribute="top" secondItem="lQ2-He-DsX" secondAttribute="top" constant="20" id="tu0-lb-CKF"/>
                             <constraint firstItem="Uur-a8-6tn" firstAttribute="leading" secondItem="lQ2-He-DsX" secondAttribute="leading" constant="57" id="zCp-cd-cGz"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="pUp-wQ-y7h" appends="YES" id="aeV-M7-Ulz"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="yEq-rk-Z1N"/>
                     <connections>
@@ -785,6 +810,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yTp-xR-ZZN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="pUp-wQ-y7h">
+                    <connections>
+                        <action selector="onBackgroundTap:" destination="qJV-wg-7yJ" id="Qyi-tt-oTo"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-2563" y="1489"/>
         </scene>

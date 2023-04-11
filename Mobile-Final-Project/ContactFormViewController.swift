@@ -32,7 +32,7 @@ class ContactFormViewController: UIViewController, UITextViewDelegate {
         
         dbHelper.openDB()
         dbHelper.createTable()
-        //dbHelper.droptable()
+        //dbHelper.dropTable()
         dbHelper.closeDB()
     }
 

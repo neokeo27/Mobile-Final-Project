@@ -11,7 +11,7 @@ protocol ClientDetailViewControllerDelegate: AnyObject {
     func didDelete()
 }
 
-class ClientDetailViewController: UIViewController {
+class ClientDetailViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var lblFirstName: UILabel!
     @IBOutlet weak var lblLastName: UILabel!
@@ -28,6 +28,8 @@ class ClientDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        txtNote.delegate = self
     
         populateDetails()
     }
@@ -64,7 +66,6 @@ class ClientDetailViewController: UIViewController {
         dbHelper.openDB()
         contactID = dbHelper.getContactId(email: selectedContact.email!)
         dbHelper.closeDB()
-        print("id is: \(String(describing: contactID))")
     }
     
     func updateNote() {
@@ -74,9 +75,7 @@ class ClientDetailViewController: UIViewController {
     }
     
     func deleteContact() {
-        dbHelper.openDB()
-        contactID = dbHelper.getContactId(email: selectedContact.email!)
-        dbHelper.closeDB()
+        getContactID()
         let controller = UIAlertController(title: "Delete?", message: "Are you sure?", preferredStyle: .actionSheet)
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in return }
@@ -102,7 +101,7 @@ class ClientDetailViewController: UIViewController {
         }
     }
     
-    @IBAction func textFieldDone(sender: UITextField) {
+    func textFieldDone(sender: UITextField) {
         sender.resignFirstResponder()
     }
     

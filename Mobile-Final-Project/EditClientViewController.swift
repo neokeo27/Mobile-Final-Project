@@ -27,6 +27,7 @@ class EditClientViewController: UIViewController {
     var editContact : Contact!
     
     let dbHelper = DBHelper.shared
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,16 +55,23 @@ class EditClientViewController: UIViewController {
         newAddress = editAddress.text
         newPhone = editPhone.text
         
-        if validateData(email: newEmail, phone: newPhone) {
-            getContactID()
-            updateContact()
-            
-            let controller = UIAlertController(title: "Success!", message: "Contact has been Updated", preferredStyle: .actionSheet)
-            let cancelAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            controller.addAction(cancelAction)
-            
-            present(controller, animated: true, completion: nil)
-        }
+//        if validateData(email: newEmail, phone: newPhone) {
+//            getContactID()
+//            let controller = UIAlertController(title: "Save?", message: "Save your edits?", preferredStyle: .actionSheet)
+//
+//            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in return }
+//
+//            let saveAction = UIAlertAction(title: "Save", style: .default) { (action) in
+//                self.updateContact()
+//            }
+//            controller.addAction(cancelAction)
+//            controller.addAction(saveAction)
+//
+//            present(controller, animated: true, completion: nil)
+//       }
+        getContactID()
+        updateContact()
+        self.dismiss(animated: true)
     }
     
     func getContactID() {

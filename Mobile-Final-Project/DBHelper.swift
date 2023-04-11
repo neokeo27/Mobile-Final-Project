@@ -55,7 +55,7 @@ class DBHelper {
         sqlite3_finalize(statement)
     }
     
-    func droptable() {
+    func dropTable() {
         let dropQuery = "DROP TABLE IF EXISTS myContacts"
         var statement: OpaquePointer?
         if sqlite3_prepare_v2(db, dropQuery, -1, &statement, nil) == SQLITE_OK {
@@ -113,6 +113,29 @@ class DBHelper {
             sqlite3_finalize(statement)
         }
         return contacts
+    }
+    
+    func fetchContactByID(contactID: Int) -> Contact? {
+        let selectQuery = "SELECT * FROM myContacts WHERE id = ?;"
+        var statement: OpaquePointer?
+        if sqlite3_prepare_v2(db, selectQuery, -1, &statement, nil) == SQLITE_OK {
+            if sqlite3_step(statement) == SQLITE_ROW {
+                let firstName = String(cString: sqlite3_column_text(statement, 1))
+                let lastName = String(cString: sqlite3_column_text(statement, 2))
+                let email = String(cString: sqlite3_column_text(statement, 3))
+                let address = String(cString: sqlite3_column_text(statement, 4))
+                let phone = String(cString: sqlite3_column_text(statement, 5))
+                let note = String(cString: sqlite3_column_text(statement, 6))
+
+                let contact = Contact(firstName: firstName, lastName: lastName, email: email, address: address, phone: phone, note: note)
+                sqlite3_finalize(statement)
+                
+                return contact
+            }
+            sqlite3_finalize(statement)
+        }
+        print("none found with that id")
+        return nil
     }
 
     func updateContact(contactID: Int, contact: Contact) {
