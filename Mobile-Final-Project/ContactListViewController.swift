@@ -30,6 +30,7 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
         dbHelper.openDB()
         contacts = dbHelper.fetchAllContacts()
         dbHelper.closeDB()
+        print("List populated")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

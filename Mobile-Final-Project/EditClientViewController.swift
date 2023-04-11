@@ -35,6 +35,7 @@ class EditClientViewController: UIViewController {
     
     @IBAction func btnSaveContact(_ sender: UIButton) {
         saveData()
+        self.dismiss(animated: true)
     }
     
     func populateDetails() {
@@ -65,7 +66,6 @@ class EditClientViewController: UIViewController {
             
             present(controller, animated: true, completion: nil)
         }
-        self.dismiss(animated: true)
     }
     
     func validateData(email: String!, phone: String!) -> Bool{
