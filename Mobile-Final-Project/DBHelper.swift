@@ -151,14 +151,20 @@ class DBHelper {
             //sqlite3_bind_text(statement, 6, (contact.note! as NSString).utf8String, -1, nil)
             //sqlite3_bind_int(statement, 7, Int32(contactID))
             sqlite3_bind_int(statement, 6, Int32(contactID))
-            if sqlite3_step(statement) != SQLITE_DONE {
-                print("Error updating contact")
+             if sqlite3_step(statement) == SQLITE_DONE {
+                print("Contact updated successfully.")
             } else {
-                print("contact updated")
+                let errorMessage = String(cString: sqlite3_errmsg(db))
+                print("Error updating contact: \(errorMessage)")
             }
             sqlite3_finalize(statement)
+        } else {
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            print("Error preparing update statement: \(errorMessage)")
         }
     }
+
+
     
     func updateNote(contactID: Int, contact: Contact) {
         let updateQuery = "UPDATE myContacts SET note = ? WHERE id = ?;"

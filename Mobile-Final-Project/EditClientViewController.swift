@@ -29,6 +29,7 @@ class EditClientViewController: UIViewController {
     var contactID: Int!
     
     var editContact : Contact!
+    var newContact : Contact!
     
     let dbHelper = DBHelper.shared
     
@@ -54,30 +55,14 @@ class EditClientViewController: UIViewController {
     }
     
     func saveData() {
-        newFirstName = editFirstName.text
-        newLastName = editLastName.text
-        newEmail = editEmail.text
-        newAddress = editAddress.text
-        newPhone = editPhone.text
-//        if validateData(email: newEmail, phone: newPhone) {
-//            getContactID()
-//            let controller = UIAlertController(title: "Save?", message: "Save your edits?", preferredStyle: .actionSheet)
-//            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in return }
-//            let saveAction = UIAlertAction(title: "Save", style: .default) { (action) in self.updateContact() }
-//            controller.addAction(cancelAction)
-//            controller.addAction(saveAction)
-//
-//            if let popoverPresentationController = controller.popoverPresentationController {
-//                popoverPresentationController.sourceView = self.view;
-//                popoverPresentationController.sourceRect = self.view.bounds;
-//            }
-//
-//            present(controller, animated: true, completion: nil)
-//        }
+        newContact.firstName = editFirstName.text
+        newContact.lastName = editLastName.text
+        newContact.email = editEmail.text
+        newContact.address = editAddress.text
+        newContact.phone = editPhone.text
+
         getContactID()
-        updateContact()
-//       delegate?.didUpdate()
-//        self.dismiss(animated: true)
+        updateContact(contact: newContact)
     }
     
     func getContactID() {
@@ -86,9 +71,9 @@ class EditClientViewController: UIViewController {
         dbHelper.closeDB()
     }
     
-    func updateContact() {
+    func updateContact(contact: contact) {
         dbHelper.openDB()
-        dbHelper.updateContact(contactID: contactID, contact: editContact)
+        dbHelper.updateContact(contactID: contactID, contact: contact)
         dbHelper.closeDB()
     }
     
