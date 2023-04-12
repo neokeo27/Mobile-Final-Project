@@ -11,7 +11,7 @@ protocol ClientDetailViewControllerDelegate: AnyObject {
     func didDelete()
 }
 
-class ClientDetailViewController: UIViewController, UITextViewDelegate {
+class ClientDetailViewController: UIViewController, UITextViewDelegate, EditClientViewControllerDelegate {
     
     @IBOutlet weak var lblFirstName: UILabel!
     @IBOutlet weak var lblLastName: UILabel!
@@ -29,7 +29,7 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         txtNote.delegate = self
-        populateDetails()
+        populateDetails(contact: selectedContact)
     }
     
     @IBAction func btnSaveNote(_ sender: UIButton) {
@@ -38,8 +38,13 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate {
         selectedContact.note = newNote
         updateNote()
     }
+
+    func didUpdate() {
+        let freshContact = fetchData()
+        populateDetails(contact: freshContact)
+    }
     
-    func populateDetails() {
+    func populateDetails(contact: Contact) {
         lblFirstName.text = selectedContact.firstName
         lblLastName.text = selectedContact.lastName
         lblEmail.text = selectedContact.email
@@ -65,6 +70,13 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate {
         contactID = dbHelper.getContactId(email: selectedContact.email!)
         dbHelper.closeDB()
         return contactID
+    }
+
+    func fetchData() -> Contact {
+        contactID = getContactID()
+        dbHelper.openDB()
+        freshContact = dbHelper.fetchContactByID(contactID)
+        dbHelper.closeDB()
     }
     
     func updateNote() {
