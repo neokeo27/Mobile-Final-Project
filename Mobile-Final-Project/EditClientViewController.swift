@@ -20,16 +20,9 @@ class EditClientViewController: UIViewController {
     @IBOutlet weak var editPhone: UITextField!
     @IBOutlet weak var textNote: UITextView!
     
-    var newFirstName: String?
-    var newLastName: String?
-    var newEmail: String?
-    var newAddress: String?
-    var newPhone: String?
-    
     var contactID: Int!
     
     var editContact : Contact!
-    var newContact : Contact!
     
     let dbHelper = DBHelper.shared
     
@@ -55,23 +48,27 @@ class EditClientViewController: UIViewController {
     }
     
     func saveData() {
-        newContact.firstName = editFirstName.text
-        newContact.lastName = editLastName.text
-        newContact.email = editEmail.text
-        newContact.address = editAddress.text
-        newContact.phone = editPhone.text
-
-        getContactID()
-        updateContact(contact: newContact)
+        let newFirstName: String? = editFirstName.text
+        let newLastName: String? = editLastName.text
+        let newEmail: String? = editEmail.text
+        let newAddress: String? = editAddress.text
+        let newPhone: String? = editPhone.text
+        if validateData(email: newEmail, phone: newPhone) {
+            let newContact = Contact(firstName: newFirstName, lastName: newLastName, email: newEmail, address: newAddress, phone: newPhone, note: editContact.note)
+            getContactID()
+            updateContact(contact: newContact)
+        } else {
+            return
+        }
     }
     
     func getContactID() {
         dbHelper.openDB()
-        contactID = dbHelper.getContactId(email: newEmail!)
+        contactID = dbHelper.getContactId(email: editContact.email!)
         dbHelper.closeDB()
     }
     
-    func updateContact(contact: contact) {
+    func updateContact(contact: Contact) {
         dbHelper.openDB()
         dbHelper.updateContact(contactID: contactID, contact: contact)
         dbHelper.closeDB()
