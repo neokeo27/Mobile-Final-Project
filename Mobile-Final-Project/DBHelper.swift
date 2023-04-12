@@ -143,12 +143,12 @@ class DBHelper {
         //let updateQuery = "UPDATE myContacts SET firstName = ?, lastName = ?, email = ?, address = ?, phone = ?, note = ? WHERE id = ?;"
         var statement: OpaquePointer?
         if sqlite3_prepare_v2(db, updateQuery, -1, &statement, nil) == SQLITE_OK {
-            sqlite3_bind_text(statement, 1, (contact.firstName! as NSString).utf8String ?? "", -1, nil)
-            sqlite3_bind_text(statement, 2, (contact.lastName! as NSString).utf8String ?? "", -1, nil)
-            sqlite3_bind_text(statement, 3, (contact.email! as NSString).utf8String ?? "", -1, nil)
-            sqlite3_bind_text(statement, 4, (contact.address! as NSString).utf8String ?? "", -1, nil)
-            sqlite3_bind_text(statement, 5, (contact.phone! as NSString).utf8String ?? "", -1, nil)
-            //sqlite3_bind_text(statement, 6, (contact.note! as NSString).utf8String ?? "", -1, nil)
+            sqlite3_bind_text(statement, 1, (contact.firstName! as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 2, (contact.lastName! as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 3, (contact.email! as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 4, (contact.address! as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 5, (contact.phone! as NSString).utf8String, -1, nil)
+            //sqlite3_bind_text(statement, 6, (contact.note! as NSString).utf8String, -1, nil)
             //sqlite3_bind_int(statement, 7, Int32(contactID))
             sqlite3_bind_int(statement, 6, Int32(contactID))
             if sqlite3_step(statement) != SQLITE_DONE {
@@ -164,7 +164,7 @@ class DBHelper {
         let updateQuery = "UPDATE myContacts SET note = ? WHERE id = ?;"
         var statement: OpaquePointer?
         if sqlite3_prepare_v2(db, updateQuery, -1, &statement, nil) == SQLITE_OK {
-            sqlite3_bind_text(statement, 1, (contact.note! as NSString).utf8String ?? "", -1, nil)
+            sqlite3_bind_text(statement, 1, (contact.note! as NSString).utf8String, -1, nil)
             sqlite3_bind_int(statement, 2, Int32(contactID))
             if sqlite3_step(statement) != SQLITE_DONE {
                 print("error updating contact note")
@@ -179,7 +179,6 @@ class DBHelper {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailPredicate.evaluate(with: email)
-        
     }
 
     func isPhoneValid(phone: String) -> Bool {

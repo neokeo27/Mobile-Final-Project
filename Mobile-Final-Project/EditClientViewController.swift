@@ -5,9 +5,9 @@
 //  Created by Jordan Keough on 4/7/23.
 //
 
-protocol EditClientViewControllerDelegate: AnyObject {
-    func didUpdate()
-}
+//protocol EditClientViewControllerDelegate: AnyObject {
+//    func didUpdate()
+//}
 
 import UIKit
 
@@ -32,7 +32,7 @@ class EditClientViewController: UIViewController {
     
     let dbHelper = DBHelper.shared
     
-    weak var delegate: EditClientViewControllerDelegate?
+    //weak var delegate: EditClientViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,25 +59,25 @@ class EditClientViewController: UIViewController {
         newEmail = editEmail.text
         newAddress = editAddress.text
         newPhone = editPhone.text
-        
 //        if validateData(email: newEmail, phone: newPhone) {
 //            getContactID()
 //            let controller = UIAlertController(title: "Save?", message: "Save your edits?", preferredStyle: .actionSheet)
-//
 //            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in return }
-//
-//            let saveAction = UIAlertAction(title: "Save", style: .default) { (action) in
-//                self.updateContact()
-//            }
+//            let saveAction = UIAlertAction(title: "Save", style: .default) { (action) in self.updateContact() }
 //            controller.addAction(cancelAction)
 //            controller.addAction(saveAction)
 //
+//            if let popoverPresentationController = controller.popoverPresentationController {
+//                popoverPresentationController.sourceView = self.view;
+//                popoverPresentationController.sourceRect = self.view.bounds;
+//            }
+//
 //            present(controller, animated: true, completion: nil)
-//       }
+//        }
         getContactID()
         updateContact()
-        delegate?.didUpdate()
-        self.dismiss(animated: true)
+//       delegate?.didUpdate()
+//        self.dismiss(animated: true)
     }
     
     func getContactID() {
@@ -92,25 +92,44 @@ class EditClientViewController: UIViewController {
         dbHelper.closeDB()
     }
     
-    func validateData(email: String!, phone: String!) -> Bool{
-        if !dbHelper.isEmailValid(email: email!) {
-            let controller = UIAlertController(title: "Error", message: "Email is invalid", preferredStyle: .actionSheet)
+    func checkEmail(email: String!) -> Bool {
+        dbHelper.openDB()
+        if !dbHelper.isEmailValid(email: email!){
+            let controller = UIAlertController(title: "Error", message: "Email is in an invalid format", preferredStyle: .actionSheet)
             let cancelAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
             controller.addAction(cancelAction)
             
             present(controller, animated: true, completion: nil)
+            dbHelper.closeDB()
             return false
+        } else {
+            dbHelper.closeDB()
+            return true
         }
-        
+    }
+
+    func checkPhone(phone: String!) -> Bool {
+        dbHelper.openDB()
         if !dbHelper.isPhoneValid(phone: phone!) {
             let controller = UIAlertController(title: "Error", message: "Phone Number is invalid", preferredStyle: .actionSheet)
             let cancelAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
             controller.addAction(cancelAction)
-            
+
             present(controller, animated: true, completion: nil)
+            dbHelper.closeDB()
+            return false
+        } else {
+            dbHelper.closeDB()
+            return true
+        }
+    }
+    
+    func validateData(email: String!, phone: String!) -> Bool{
+        if checkEmail(email: email!) && checkPhone(phone: phone!) {
+            return true
+        } else {
             return false
         }
-        return true
     }
     
     @IBAction func btnClose(_ sender: UIButton) {
@@ -131,6 +150,6 @@ class EditClientViewController: UIViewController {
     }
     
     func updateData() {
-        delegate?.didUpdate()
+        //delegate?.didUpdate()
     }
 }

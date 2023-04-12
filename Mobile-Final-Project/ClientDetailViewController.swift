@@ -104,6 +104,7 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate {
 
             self.dismiss(animated: true)
         }
+        
         controller.addAction(cancelAction)
         controller.addAction(deleteAction)
 
@@ -126,9 +127,9 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate {
     }
 }
 
-extension ClientDetailViewController: EditClientViewControllerDelegate {
-    func didUpdate() {
-        refreshData() 
-        let editClientVC = storyboard?.instantiateViewController(withIdentifier: "EditClientViewController") as! EditClientViewController
-    }
-}
+//extension ClientDetailViewController: EditClientViewControllerDelegate {
+//    func didUpdate() {
+//        refreshData()
+//        let editClientVC = storyboard?.instantiateViewController(withIdentifier: "EditClientViewController") as! EditClientViewController
+//    }
+//}

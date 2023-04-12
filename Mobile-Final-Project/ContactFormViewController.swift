@@ -77,7 +77,6 @@ class ContactFormViewController: UIViewController, UITextViewDelegate {
             return true
         }
     }
-
     
     func validateData(email: String!, phone: String!) -> Bool{
         if checkEmail(email: email!) && checkPhone(phone: phone!) {

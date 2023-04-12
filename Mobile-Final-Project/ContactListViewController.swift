@@ -31,16 +31,16 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
         listTableView.reloadData()
     }
     
-    func didDelete() {
-        populateList()
-        listTableView.reloadData()
-    }
-    
     func populateList() {
         dbHelper.openDB()
         contacts = dbHelper.fetchAllContacts()
         dbHelper.closeDB()
         print("List populated")
+    }
+    
+    func didDelete() {
+        populateList()
+        listTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,21 +61,23 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
         clientDetailVC.delegate = self
         self.performSegue(withIdentifier: "segueShowContact", sender: nil)
     }
-    
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "segueShowContact") {
-            if let vc = segue.destination as? ClientDetailViewController {
-                vc.delegate = self
-                vc.selectedContact = contacts[selectedCellIdx]
+            if let contactDetailVC = segue.destination as? ClientDetailViewController {
+                contactDetailVC.delegate = self
+                contactDetailVC.selectedContact = contacts[selectedCellIdx]
+//                self.addChild(contactDetailVC)
+//                self.view.addSubview(contactDetailVC.view)
+//                contactDetailVC.didMove(toParent: self)
             }
         }
     }
 }
 
-extension ContactListViewController: EditClientViewControllerDelegate {
-    func didUpdate() {
-        self.listTableView.reloadData()
-        viewWillAppear(true)
-    }
-}
+//extension ContactListViewController: EditClientViewControllerDelegate {
+//    func didUpdate() {
+//        self.listTableView.reloadData()
+//        viewWillAppear(true)
+//    }
+//}
