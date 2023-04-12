@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContactListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ClientDetailViewControllerDelegate {
+class ContactListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ClientDetailViewControllerDelegate, EditClientViewControllerDelegate {
     
     @IBOutlet weak var listTableView: UITableView!
     
@@ -21,25 +21,36 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
 
         listTableView.dataSource = self
         listTableView.delegate = self
-        populateList()
+        fetchData()
         listTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        populateList()
+        fetchData()
         listTableView.reloadData()
     }
     
-    func populateList() {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        fetchData()
+        listTableView.reloadData()
+    }
+    
+    func fetchData() {
         dbHelper.openDB()
         contacts = dbHelper.fetchAllContacts()
         dbHelper.closeDB()
-        print("List populated")
+        print("list data fetched")
     }
     
     func didDelete() {
-        populateList()
+        fetchData()
+        listTableView.reloadData()
+    }
+    
+    func didUpdate() {
+        fetchData()
         listTableView.reloadData()
     }
     
@@ -67,17 +78,9 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
             if let contactDetailVC = segue.destination as? ClientDetailViewController {
                 contactDetailVC.delegate = self
                 contactDetailVC.selectedContact = contacts[selectedCellIdx]
-//                self.addChild(contactDetailVC)
-//                self.view.addSubview(contactDetailVC.view)
-//                contactDetailVC.didMove(toParent: self)
             }
         }
     }
 }
 
-//extension ContactListViewController: EditClientViewControllerDelegate {
-//    func didUpdate() {
-//        self.listTableView.reloadData()
-//        viewWillAppear(true)
-//    }
-//}
+

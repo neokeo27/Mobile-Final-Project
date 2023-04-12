@@ -28,10 +28,15 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         txtNote.delegate = self
-    
         populateDetails()
+    }
+    
+    @IBAction func btnSaveNote(_ sender: UIButton) {
+        contactID = getContactID()
+        let newNote = txtNote.text
+        selectedContact.note = newNote
+        updateNote()
     }
     
     func populateDetails() {
@@ -41,28 +46,6 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate {
         lblAddress.text = selectedContact.address
         lblPhone.text = selectedContact.phone
         txtNote.text = selectedContact.note
-    }
-    
-    func refreshData() {
-        contactID = getContactID()
-        dbHelper.openDB()
-        let freshContact = dbHelper.fetchContactByID(contactID: contactID)
-        dbHelper.closeDB()
-        
-        selectedContact.firstName = freshContact?.firstName
-        selectedContact.lastName = freshContact?.lastName
-        selectedContact.email = freshContact?.email
-        selectedContact.address = freshContact?.address
-        selectedContact.phone = freshContact?.phone
-        selectedContact.note = freshContact?.note
-        populateDetails()
-    }
-    
-    @IBAction func btnSaveNote(_ sender: UIButton) {
-        contactID = getContactID()
-        let newNote = txtNote.text
-        selectedContact.note = newNote
-        updateNote()
     }
     
     @IBAction func btnClose(_ sender: UIButton) {
@@ -127,9 +110,3 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate {
     }
 }
 
-//extension ClientDetailViewController: EditClientViewControllerDelegate {
-//    func didUpdate() {
-//        refreshData()
-//        let editClientVC = storyboard?.instantiateViewController(withIdentifier: "EditClientViewController") as! EditClientViewController
-//    }
-//}
