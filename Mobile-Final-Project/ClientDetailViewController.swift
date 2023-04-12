@@ -48,6 +48,7 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate {
         dbHelper.openDB()
         let freshContact = dbHelper.fetchContactByID(contactID: contactID)
         dbHelper.closeDB()
+        
         selectedContact.firstName = freshContact?.firstName
         selectedContact.lastName = freshContact?.lastName
         selectedContact.email = freshContact?.email
@@ -127,8 +128,7 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate {
 
 extension ClientDetailViewController: EditClientViewControllerDelegate {
     func didUpdate() {
-        refreshData()
-        
+        refreshData() 
         let editClientVC = storyboard?.instantiateViewController(withIdentifier: "EditClientViewController") as! EditClientViewController
     }
 }
