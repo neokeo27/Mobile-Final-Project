@@ -23,4 +23,13 @@ public struct Contact {
         self.phone = phone
         self.note = note
     }
+    
+    init() {
+        firstName = "John"
+        lastName = "Doe"
+        email = "noemail@web.net"
+        address = nil
+        phone = "0"
+        note = nil
+    }
 }

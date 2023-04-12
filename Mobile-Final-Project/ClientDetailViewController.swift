@@ -38,11 +38,6 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate, EditClie
         selectedContact.note = newNote
         updateNote()
     }
-
-    func didUpdate() {
-        let freshContact = fetchData()
-        populateDetails(contact: freshContact)
-    }
     
     func populateDetails(contact: Contact) {
         lblFirstName.text = selectedContact.firstName
@@ -71,12 +66,20 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate, EditClie
         dbHelper.closeDB()
         return contactID
     }
+    
+    func didUpdate() {
+//        var freshContact = Contact()
+//        freshContact = fetchData()
+//        populateDetails(contact: freshContact)
+    }
 
     func fetchData() -> Contact {
         contactID = getContactID()
         dbHelper.openDB()
-        freshContact = dbHelper.fetchContactByID(contactID)
+        var freshContact = Contact()
+        freshContact = dbHelper.fetchContactByID(contactID: contactID)!
         dbHelper.closeDB()
+        return freshContact
     }
     
     func updateNote() {
@@ -108,8 +111,10 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate, EditClie
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "segueShowEdit") {
-            let vc = segue.destination as! EditClientViewController
-            vc.editContact = selectedContact
+            if let editClientVC = segue.destination as? EditClientViewController {
+                editClientVC.delegate = self
+                editClientVC.editContact = selectedContact
+            }
         }
     }
     

@@ -879,8 +879,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xyF-2N-Qep"/>
-        <segue reference="BgZ-ng-sB7"/>
+        <segue reference="t7i-H5-DBN"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>

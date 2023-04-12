@@ -189,7 +189,6 @@ class DBHelper {
 
     func isPhoneValid(phone: String) -> Bool {
         let phoneRegex = "^(\\+\\d{1,2}\\s)?\\(?\\d{1,3}\\)?[-.\\s]?\\d{1,3}[-.\\s]?\\d{1,4}$"
-        //let phoneRegex = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$"
 
         let phonePredicate = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
         return phonePredicate.evaluate(with: phone)
