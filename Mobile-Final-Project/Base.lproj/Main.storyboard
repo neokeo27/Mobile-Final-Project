@@ -331,7 +331,7 @@
         <!--ClientDetail-->
         <scene sceneID="wv5-GQ-DMU">
             <objects>
-                <viewController title="ClientDetail" id="jMK-p4-hXg" customClass="ClientDetailViewController" customModule="Mobile_Final_Project" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ClientDetailViewController" title="ClientDetail" id="jMK-p4-hXg" customClass="ClientDetailViewController" customModule="Mobile_Final_Project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qes-07-09Y">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -585,7 +585,7 @@
         <!--EditClient-->
         <scene sceneID="giF-8s-TVw">
             <objects>
-                <viewController title="EditClient" id="qJV-wg-7yJ" customClass="EditClientViewController" customModule="Mobile_Final_Project" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditClientViewController" title="EditClient" id="qJV-wg-7yJ" customClass="EditClientViewController" customModule="Mobile_Final_Project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6SS-KS-1AT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -879,7 +879,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xyF-2N-Qep"/>
         <segue reference="BgZ-ng-sB7"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -5,6 +5,10 @@
 //  Created by Jordan Keough on 4/7/23.
 //
 
+protocol EditClientViewControllerDelegate: AnyObject {
+    func didUpdate()
+}
+
 import UIKit
 
 class EditClientViewController: UIViewController {
@@ -27,8 +31,9 @@ class EditClientViewController: UIViewController {
     var editContact : Contact!
     
     let dbHelper = DBHelper.shared
-
     
+    weak var delegate: EditClientViewControllerDelegate?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         populateDetails()
@@ -71,6 +76,7 @@ class EditClientViewController: UIViewController {
 //       }
         getContactID()
         updateContact()
+        delegate?.didUpdate()
         self.dismiss(animated: true)
     }
     
@@ -122,5 +128,9 @@ class EditClientViewController: UIViewController {
         editAddress.resignFirstResponder()
         editPhone.resignFirstResponder()
         textNote.resignFirstResponder()
+    }
+    
+    func updateData() {
+        delegate?.didUpdate()
     }
 }

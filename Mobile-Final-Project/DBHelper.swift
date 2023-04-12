@@ -191,14 +191,16 @@ class DBHelper {
     }
     
     func isEmailUnique(email: String) -> Bool {
-        var isUnique = true
-        let selectQuery = "SELECT COUNT(*) FROM myContacts WHERE email = ?;"
+        var isUnique = false
         var statement: OpaquePointer?
+        let countQuery = "SELECT COUNT(*) FROM myContacts WHERE email = ?;"
         
-        if sqlite3_prepare_v2(db, selectQuery, -1, &statement, nil) == SQLITE_OK {
+        if sqlite3_prepare_v2(db, countQuery, -1, &statement, nil) == SQLITE_OK {
             while sqlite3_step(statement) == SQLITE_ROW {
                 let count = Int(sqlite3_column_int(statement, 0))
-                if count > 0 {
+                if count == 0 {
+                    isUnique = true
+                } else {
                     isUnique = false
                 }
             }

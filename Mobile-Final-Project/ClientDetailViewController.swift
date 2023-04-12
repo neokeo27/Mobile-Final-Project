@@ -43,8 +43,22 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate {
         txtNote.text = selectedContact.note
     }
     
+    func refreshData() {
+        contactID = getContactID()
+        dbHelper.openDB()
+        let freshContact = dbHelper.fetchContactByID(contactID: contactID)
+        dbHelper.closeDB()
+        selectedContact.firstName = freshContact?.firstName
+        selectedContact.lastName = freshContact?.lastName
+        selectedContact.email = freshContact?.email
+        selectedContact.address = freshContact?.address
+        selectedContact.phone = freshContact?.phone
+        selectedContact.note = freshContact?.note
+        populateDetails()
+    }
+    
     @IBAction func btnSaveNote(_ sender: UIButton) {
-        getContactID()
+        contactID = getContactID()
         let newNote = txtNote.text
         selectedContact.note = newNote
         updateNote()
@@ -62,10 +76,11 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate {
         deleteContact()
     }
     
-    func getContactID() {
+    func getContactID() -> Int {
         dbHelper.openDB()
         contactID = dbHelper.getContactId(email: selectedContact.email!)
         dbHelper.closeDB()
+        return contactID
     }
     
     func updateNote() {
@@ -75,7 +90,7 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     func deleteContact() {
-        getContactID()
+        contactID = getContactID()
         let controller = UIAlertController(title: "Delete?", message: "Are you sure?", preferredStyle: .actionSheet)
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in return }
@@ -107,5 +122,13 @@ class ClientDetailViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func onBackgroundTap(_ sender: Any) {
         txtNote.resignFirstResponder()
+    }
+}
+
+extension ClientDetailViewController: EditClientViewControllerDelegate {
+    func didUpdate() {
+        refreshData()
+        
+        let editClientVC = storyboard?.instantiateViewController(withIdentifier: "EditClientViewController") as! EditClientViewController
     }
 }

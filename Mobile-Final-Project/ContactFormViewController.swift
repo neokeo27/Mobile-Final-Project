@@ -27,7 +27,7 @@ class ContactFormViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         txtNote.delegate = self
         
         dbHelper.openDB()
@@ -35,39 +35,56 @@ class ContactFormViewController: UIViewController, UITextViewDelegate {
         //dbHelper.dropTable()
         dbHelper.closeDB()
     }
-
+    
     @IBAction func btnSaveContact(_ sender: UIButton) {
         saveData()
     }
     
-    func validateData(email: String!, phone: String!) -> Bool{
-        if !dbHelper.isEmailValid(email: email!) {
-            let controller = UIAlertController(title: "Error", message: "Email is invalid", preferredStyle: .actionSheet)
+    func checkEmail(email: String!) -> Bool {
+        dbHelper.openDB()
+        if !dbHelper.isEmailValid(email: email!) || !dbHelper.isEmailUnique(email: email!) {
+            var message : String!
+            if !dbHelper.isEmailValid(email: email!)  {
+                message = "Email is in an invalid format"
+            } else if !dbHelper.isEmailUnique(email: email!) {
+                message = "Email already exists"
+            }
+            let controller = UIAlertController(title: "Error", message: message, preferredStyle: .actionSheet)
             let cancelAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
             controller.addAction(cancelAction)
-
+            
             present(controller, animated: true, completion: nil)
+            dbHelper.closeDB()
             return false
+        } else {
+            dbHelper.closeDB()
+            return true
         }
-        
-        if !dbHelper.isEmailUnique(email: email!) {
-            let controller = UIAlertController(title: "Error", message: "Email already exists", preferredStyle: .actionSheet)
-            let cancelAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-            controller.addAction(cancelAction)
+    }
 
-            present(controller, animated: true, completion: nil)
-            return false
-        }
-        
+    func checkPhone(phone: String!) -> Bool {
+        dbHelper.openDB()
         if !dbHelper.isPhoneValid(phone: phone!) {
             let controller = UIAlertController(title: "Error", message: "Phone Number is invalid", preferredStyle: .actionSheet)
             let cancelAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
             controller.addAction(cancelAction)
 
             present(controller, animated: true, completion: nil)
+            dbHelper.closeDB()
+            return false
+        } else {
+            dbHelper.closeDB()
+            return true
+        }
+    }
+
+    
+    func validateData(email: String!, phone: String!) -> Bool{
+        if checkEmail(email: email!) && checkPhone(phone: phone!) {
+            return true
+        } else {
             return false
         }
-        return true
     }
     
     func saveData() {

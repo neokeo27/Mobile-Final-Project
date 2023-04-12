@@ -26,6 +26,7 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         populateList()
         listTableView.reloadData()
     }
@@ -56,6 +57,8 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCellIdx = indexPath.row
+        let clientDetailVC = storyboard?.instantiateViewController(withIdentifier: "ClientDetailViewController") as! ClientDetailViewController
+        clientDetailVC.delegate = self
         self.performSegue(withIdentifier: "segueShowContact", sender: nil)
     }
     
@@ -67,5 +70,12 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
                 vc.selectedContact = contacts[selectedCellIdx]
             }
         }
+    }
+}
+
+extension ContactListViewController: EditClientViewControllerDelegate {
+    func didUpdate() {
+        self.listTableView.reloadData()
+        viewWillAppear(true)
     }
 }
